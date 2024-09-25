@@ -1,4 +1,4 @@
-package com.vast.co;
+package com.vast.vo;
 
 public class Bus {
 	private String bus_Number;
