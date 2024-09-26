@@ -73,12 +73,52 @@ public class DbBusDao implements IBusDao {
 			throw new NotFoundException("no bus are found ");
 		}
 		return buses;
+	
 	}
-
+	
 	@Override
-	public List<String> getAvailableSeats(String busNumber) {
+	public List<String> getAvailableSeats(String busNumber) throws NotFoundException {
+	    List<String> seats = new ArrayList<>();
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
 
-		return null;
+	    try {
+	        conn = DriverManager.getConnection(rb.getString(busNumber)); 
+	        logger.debug("connected mq sql server successfully..");
+	        String sql = "SELECT seat_number FROM bus_seats WHERE bus_number = ? AND is_available = true";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, busNumber);
+
+	        rs = pstmt.executeQuery();
+
+	        // Check if the result set has rows (seats)
+	        if (!rs.isBeforeFirst()) {
+	            throw new NotFoundException("No available seats found for bus number: " + busNumber);
+	        }
+
+	        // Add seat numbers to the list
+	        while (rs.next()) {
+	            seats.add(rs.getString("seat_number"));
+	        }
+
+	        logger.debug("Available seats for bus " + busNumber + " retrieved successfully.");
+	        
+	    } catch (SQLException e) {
+	        logger.error("Error while retrieving available seats for bus: " + e.getMessage());
+	    } finally {
+	        // Close resources
+	        try {
+	            if (rs != null) rs.close();
+	            if (pstmt != null) pstmt.close();
+	            if (conn != null) closeConnection(conn);
+	        } catch (SQLException e) {
+	            logger.error("Error while closing resources: " + e.getMessage());
+	        }
+	    }
+
+	    return seats;
+
 	}
 
 	private void closeConnection(Connection conn) {

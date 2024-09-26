@@ -8,5 +8,5 @@ import com.vast.vo.Bus;
 public interface IBusDao {
 	List<Bus> findBuses(String departure, String arrival) throws NotFoundException  ;
 
-	List<String> getAvailableSeats(String busNumber);
+	List<String> getAvailableSeats(String busNumber) throws NotFoundException;
 }
