@@ -1,6 +1,4 @@
 <?xml version="1.0"?>
 <actions>
-	<action uri="/findbus"
-		class="com.vast.web.FindBuses" />
-	
+	<action uri="/findbus" class="com.vast.web.FindBuses" />
 </actions>

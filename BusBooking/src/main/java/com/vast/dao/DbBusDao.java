@@ -43,35 +43,36 @@ public class DbBusDao implements IBusDao {
 	public List<Bus> findBuses(String departure, String arrival) throws NotFoundException {
 		List<Bus> buses = new ArrayList<Bus>();
 		Connection con = null;
-		Bus bus = null;
 
 		try {
 			con = DriverManager.getConnection(rb.getString("url"), rb.getString("uname"), rb.getString("pwd"));
 			logger.debug("mysql server connected ");
-			String sql = "select * from bus where  departure= ? and arrival = ?";
+			String sql = "SELECT * FROM bus WHERE departure = ? AND arrival = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, departure);
 			ps.setString(2, arrival);
 			ResultSet rs = ps.executeQuery();
+
 			while (rs.next()) {
-				bus = new Bus();
+				Bus bus = new Bus(); // Create a new Bus object inside the loop
 				bus.setBus_Number(rs.getString("bus_Number"));
 				bus.setName(rs.getString("name"));
 				bus.setDeparture(rs.getString("departure"));
 				bus.setArrival(rs.getString("arrival"));
+				buses.add(bus); // Add each bus to the list
 			}
-			buses.add(bus);
-			logger.info("bus retrived from database");
 
+			if (buses.isEmpty()) {
+				throw new NotFoundException("No buses found for the selected route.");
+			}
+
+			logger.info("buses retrieved from database");
 		} catch (SQLException e) {
-
 			logger.error(e.getMessage());
 		} finally {
 			closeConnection(con);
 		}
-		if (buses.isEmpty()) {
-			throw new NotFoundException("no bus are found ");
-		}
+
 		return buses;
 	
 	}
