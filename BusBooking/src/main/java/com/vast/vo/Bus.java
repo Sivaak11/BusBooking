@@ -6,6 +6,10 @@ public class Bus {
 	private String departure;
 	private String arrival;
 
+	public Bus() {
+
+	}
+
 	public Bus(String bus_Number, String name, String departure, String arrival) {
 		super();
 		this.bus_Number = bus_Number;
