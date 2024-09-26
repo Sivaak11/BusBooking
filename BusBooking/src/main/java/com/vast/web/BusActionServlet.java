@@ -22,7 +22,7 @@ import com.vast.dao.DbBusDao;
 import com.vast.dao.IBusDao;
 
 /**
- * Servlet implementation class BusActionServlet
+ Servlet implementation class BusActionServlet
  */
 @WebServlet("/BusActionServlet")
 public class BusActionServlet extends HttpServlet {

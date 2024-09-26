@@ -93,12 +93,11 @@ public class DbBusDao implements IBusDao {
 
 	        rs = pstmt.executeQuery();
 
-	        // Check if the result set has rows (seats)
+	       
 	        if (!rs.isBeforeFirst()) {
 	            throw new NotFoundException("No available seats found for bus number: " + busNumber);
 	        }
 
-	        // Add seat numbers to the list
 	        while (rs.next()) {
 	            seats.add(rs.getString("seat_number"));
 	        }
