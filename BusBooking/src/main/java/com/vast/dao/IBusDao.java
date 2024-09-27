@@ -9,4 +9,5 @@ public interface IBusDao {
 	List<Bus> findBuses(String departure, String arrival) throws NotFoundException  ;
 
 	List<String> getAvailableSeats(String busNumber) throws NotFoundException;
+	
 }

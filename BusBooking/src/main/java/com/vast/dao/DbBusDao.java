@@ -87,18 +87,18 @@ public class DbBusDao implements IBusDao {
 	    try {
 	        conn = DriverManager.getConnection(rb.getString(busNumber)); 
 	        logger.debug("connected mq sql server successfully..");
-	        String sql = "SELECT seat_number FROM bus_seats WHERE bus_number = ? AND is_available = true";
+	        String sql = "SELECT seat_number FROM bus_seats WHERE bus_number = ? AND is_available = 'true'";
 	        pstmt = conn.prepareStatement(sql);
 	        pstmt.setString(1, busNumber);
 
 	        rs = pstmt.executeQuery();
 
-	        // Check if the result set has rows (seats)
+	        
 	        if (!rs.isBeforeFirst()) {
 	            throw new NotFoundException("No available seats found for bus number: " + busNumber);
 	        }
 
-	        // Add seat numbers to the list
+	     
 	        while (rs.next()) {
 	            seats.add(rs.getString("seat_number"));
 	        }
@@ -108,7 +108,7 @@ public class DbBusDao implements IBusDao {
 	    } catch (SQLException e) {
 	        logger.error("Error while retrieving available seats for bus: " + e.getMessage());
 	    } finally {
-	        // Close resources
+	      
 	        try {
 	            if (rs != null) rs.close();
 	            if (pstmt != null) pstmt.close();

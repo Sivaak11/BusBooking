@@ -1,246 +1,257 @@
 @charset "ISO-8859-1";
+
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-    font-family: Arial, sans-serif;
+	font-family: Arial, sans-serif;
 }
 
-.header-class{
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.header-class {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 20px;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    font-size: 24px;
+	display: flex;
+	align-items: center;
+	font-size: 24px;
 }
 
 .trusted {
-    font-size: 24px;
-    color: #777;
+	font-size: 24px;
+	color: #777;
 }
 
 .nav {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .nav a {
-    color: #333;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 16px;
-    padding: 5px 10px;
+	color: #333;
+	text-decoration: none;
+	margin-left: 20px;
+	font-size: 16px;
+	padding: 5px 10px;
 }
 
 .nav a:hover {
-    color: #ff4500;
+	color: #ff4500;
 }
 
 .nav .login {
-    color: red;
-    font-weight: bold;
+	color: red;
+	font-weight: bold;
 }
-.well a{
-text-decoration: none;
-font-size: 24px;
+
+.well a {
+	text-decoration: none;
+	font-size: 24px;
 }
 
 .hero {
-
-
-    
-
-    height: 79vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+	height: 79vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
 }
 
 .overlay {
-
-    background: rgba(255, 165, 0, 0.9); /* orange overlay */
-
-    background: rgba(255, 165, 0, 0.9); 
-
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
+	background: rgba(255, 165, 0, 0.9); /* orange overlay */
+	background: rgba(255, 165, 0, 0.9);
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
 }
 
 h1 {
-    color: white;
-    font-size: 36px;
-    margin-bottom: 20px;
+	color: white;
+	font-size: 36px;
+	margin-bottom: 20px;
 }
 
 .booking-form {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .booking-form input {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	outline: none;
 }
 
 .booking-form input[type="text"] {
-    width: 150px;
+	width: 150px;
 }
 
 .booking-form input[type="date"] {
-    width: 140px;
+	width: 140px;
 }
 
 .booking-form button {
-    padding: 10px 20px;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
+	padding: 10px 20px;
+	background-color: white;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .booking-form .search-btn {
-    background-color: #ff4500;
-    color: white;
-    border: none;
+	background-color: #ff4500;
+	color: white;
+	border: none;
 }
 
 .booking-form button:hover {
-    background-color: #eee;
+	background-color: #eee;
 }
 
 .booking-form .search-btn:hover {
-    background-color: #ff5733;
+	background-color: #ff5733;
 }
 
-
 footer {
-    background-color: #1c1b2d;
-    color: #ccc;
-   
-
-footer {
-    background-color: #1c1b2d;
-    color: #ccc;
-     padding: 50px 0; 
-
+	background-color: #1c1b2d;
+	color: #ccc;
+	padding: 50px 0;
 }
 
 .container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
 }
 
 .footer-column {
-    width: 23%;
-    min-width: 250px;
+	width: 23%;
+	min-width: 250px;
 }
 
 .footer-column h2 {
-    font-size: 28px;
-    color: #fff;
-    margin-bottom: 20px;
+	font-size: 28px;
+	color: #fff;
+	margin-bottom: 20px;
 }
 
 .footer-column h3 {
-    font-size: 20px;
-    color: #fff;
-    margin-bottom: 20px;
+	font-size: 20px;
+	color: #fff;
+	margin-bottom: 20px;
 }
 
 .footer-column p, .footer-column a {
-    color: #ccc;
-    font-size: 14px;
-    margin-bottom: 10px;
-    line-height: 1.6;
+	color: #ccc;
+	font-size: 14px;
+	margin-bottom: 10px;
+	line-height: 1.6;
 }
 
 .footer-column a:hover {
-    color: #fff;
+	color: #fff;
 }
 
 .footer-column ul {
-    list-style: none;
+	list-style: none;
 }
 
 .footer-column ul li {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .footer-column ul li a {
-    color: #ccc;
-    text-decoration: none;
+	color: #ccc;
+	text-decoration: none;
 }
 
 .footer-column ul li a:hover {
-    color: #fff;
+	color: #fff;
 }
 
 .footer-bottom {
-    text-align: center;
-    padding: 20px 0;
-    background-color: #14132a;
-    color: #ccc;
+	text-align: center;
+	padding: 20px 0;
+	background-color: #14132a;
+	color: #ccc;
 }
 
 .footer-bottom p a {
-    color: #ccc;
-    text-decoration: none;
+	color: #ccc;
+	text-decoration: none;
 }
 
 .footer-bottom p a:hover {
-    color: #fff;
-
+	color: #fff;
 }
 
-
-table{
-	margin:0 auto auto auto;
-    width: 100%;
-    border-collapse: collapse;
+table {
+	margin: 0 auto;
+	width: 100%;
+	border-collapse: collapse;
+	box-shadow: 0px 4px 10px orange;
+	border-radius: 15px; /* Increased for a more curved edge */
+	overflow: hidden; 
 }
 
 th, td {
-    padding: 15px;
-    text-align: left;
-    border: 1px solid #ddd;
+	padding: 15px;
+	text-align: left;
+	border: 1px solid #ccc;
 }
 
 thead th {
-    background-color: rgba(255, 165, 0, 0.9); 
-    color: red;
+	background-color:#ff4500; /* Light orange background */
+	color: black; /* Dark gray text */
 }
 
 tbody tr {
-    background-color: rgba(255, 165, 0, 0.9); 
-    margin-bottom: 10px;
+	background-color: rgba(255, 230, 200, 0.7);
+	/* Lighter orange with transparency */
+	margin-bottom: 10px;
 }
 
 th {
-    font-weight: bold;
+	font-weight: bold;
 }
+
 td {
-    color: #333; 
+	background-color: rgba(255, 165, 0, 0.9);
+	color: #333;
+	font-size: medium;
 }
+
+.seatbutton {
+	border: #ff7f50 solid; /* Coral color border */
+	border-radius: 4px;
+	height: 30px;
+	width: 100px;
+	background-color: #ffffff; /* Coral background */
+	color: black;
+	font-size: larger;
+	transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s
+		ease;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.seatbutton:hover {
+	background-color: #ff4500;
+	color: white; /* Coral text on hover */
+	cursor: pointer;
+	
 }
