@@ -1,5 +1,7 @@
 package com.vast.web;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +19,9 @@ public class SeatAvailable implements Action{
 			request.setAttribute("findseat",dao.getAvailableSeats(busNumber));
 		} catch (NotFoundException e) {
 			request.setAttribute("res", e.getMessage());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return "availableSeats.jsp";
