@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 
 import com.vast.Exception.NotFoundException;
 import com.vast.vo.Bus;
+import com.vast.vo.Seats;
 
 public class DbBusDao implements IBusDao {
 
@@ -54,12 +55,12 @@ public class DbBusDao implements IBusDao {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Bus bus = new Bus(); // Create a new Bus object inside the loop
+				Bus bus = new Bus();
 				bus.setBus_Number(rs.getString("bus_Number"));
 				bus.setName(rs.getString("name"));
 				bus.setDeparture(rs.getString("departure"));
 				bus.setArrival(rs.getString("arrival"));
-				buses.add(bus); // Add each bus to the list
+				buses.add(bus);
 			}
 
 			if (buses.isEmpty()) {
@@ -74,52 +75,42 @@ public class DbBusDao implements IBusDao {
 		}
 
 		return buses;
-	
+
 	}
-	
+
 	@Override
-	public List<String> getAvailableSeats(String busNumber) throws NotFoundException {
-	    List<String> seats = new ArrayList<>();
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
+	public List<Seats> getAvailableSeats(String busNumber) throws NotFoundException, SQLException {
+		List<Seats> availableSeats = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
-	    try {
-	        conn = DriverManager.getConnection(rb.getString(busNumber)); 
-	        logger.debug("connected mq sql server successfully..");
-	        String sql = "SELECT seat_number FROM bus_seats WHERE bus_number = ? AND is_available = 'true'";
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setString(1, busNumber);
+		try {
+			conn = DriverManager.getConnection(rb.getString(busNumber));
+			logger.debug("connected mq sql server successfully..");
+			String sql = "SELECT seat_number FROM bus_seats WHERE bus_number = ? AND is_available = true";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, busNumber);
+			rs = pstmt.executeQuery();
 
-	        rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Seats seat = new Seats();
+				seat.setBusNumber(rs.getString("bus_number"));
+				seat.setSeatNumber(rs.getString("seat_number"));
+				seat.setAvailable(rs.getBoolean("is_available"));
+				availableSeats.add(seat);
 
-	        
-	        if (!rs.isBeforeFirst()) {
-	            throw new NotFoundException("No available seats found for bus number: " + busNumber);
-	        }
-
-	     
-	        while (rs.next()) {
-	            seats.add(rs.getString("seat_number"));
-	        }
-
-	        logger.debug("Available seats for bus " + busNumber + " retrieved successfully.");
-	        
-	    } catch (SQLException e) {
-	        logger.error("Error while retrieving available seats for bus: " + e.getMessage());
-	    } finally {
-	      
-	        try {
-	            if (rs != null) rs.close();
-	            if (pstmt != null) pstmt.close();
-	            if (conn != null) closeConnection(conn);
-	        } catch (SQLException e) {
-	            logger.error("Error while closing resources: " + e.getMessage());
-	        }
-	    }
-
-	    return seats;
-
+			}
+			if (availableSeats.isEmpty()) {
+				throw new NotFoundException("No available seats found for bus number: " + busNumber);
+			}
+		} catch (SQLException e) {
+			logger.error("SQL Error: " + e.getMessage());
+			throw new SQLException("Error fetching available seats", e);
+		} finally {
+			closeConnection(conn);
+		}
+		return availableSeats;
 	}
 
 	private void closeConnection(Connection conn) {
