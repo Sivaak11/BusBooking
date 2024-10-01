@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-request.getParameter("busId");
+request.getParameter("");
 %>
 
 </body>

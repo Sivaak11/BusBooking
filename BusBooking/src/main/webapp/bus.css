@@ -206,7 +206,7 @@ table {
 	border-collapse: collapse;
 	box-shadow: 0px 4px 10px orange;
 	border-radius: 15px; /* Increased for a more curved edge */
-	overflow: hidden; 
+	overflow: hidden;
 }
 
 th, td {
@@ -216,7 +216,7 @@ th, td {
 }
 
 thead th {
-	background-color:#ff4500; /* Light orange background */
+	background-color: #ff4500; /* Light orange background */
 	color: black; /* Dark gray text */
 }
 
@@ -253,5 +253,69 @@ td {
 	background-color: #ff4500;
 	color: white; /* Coral text on hover */
 	cursor: pointer;
-	
+}
+
+
+.passenger-form {
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+	font-size: 16px;
+	color: #333;
+	display: block;
+	margin-bottom: 8px;
+}
+
+.form-input, .form-select {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+.form-select {
+	cursor: pointer;
+}
+
+.form-section-heading {
+	color: orange;
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+
+.form-button {
+	background-color: orange;
+	color: white;
+	border: none;
+	padding: 12px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	width: 100%;
+}
+
+.form-button:hover {
+	background-color: darkorange;
+}
+
+/* Media query for responsiveness */
+@media ( max-width : 600px) {
+	.passenger-form {
+		padding: 15px;
+	}
+	.form-label {
+		font-size: 14px;
+	}
+	.form-input, .form-select, .form-button {
+		font-size: 13px;
+	}
 }
