@@ -11,6 +11,6 @@ public interface IBusDao {
 	List<Bus> findBuses(String departure, String arrival) throws NotFoundException  ;
 
 
-	List<Seats> getAvailableSeats(String busNumber) throws NotFoundException, SQLException;
+	List<Seats> getAvailableSeats(String busNumber) throws NotFoundException;
 
 }

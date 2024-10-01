@@ -79,23 +79,24 @@ public class DbBusDao implements IBusDao {
 	}
 
 	@Override
-	public List<Seats> getAvailableSeats(String busNumber) throws NotFoundException, SQLException {
+	public List<Seats> getAvailableSeats(String busNumber) throws NotFoundException {
 		List<Seats> availableSeats = new ArrayList<>();
-		Connection conn = null;
+		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-			conn = DriverManager.getConnection(rb.getString(busNumber));
+			con = DriverManager.getConnection(rb.getString("url"), rb.getString("uname"), rb.getString("pwd"));
 			logger.debug("connected mq sql server successfully..");
-			String sql = "SELECT seat_number FROM bus_seats WHERE bus_number = ? AND is_available = true";
-			pstmt = conn.prepareStatement(sql);
+			String sql = "SELECT * FROM seats WHERE bus_Number = ? AND is_available = 1";
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, busNumber);
+			logger.debug(busNumber+" : busnumber");
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				Seats seat = new Seats();
-				seat.setBusNumber(rs.getString("bus_number"));
+				seat.setBusNumber(rs.getString("bus_Number"));
 				seat.setSeatNumber(rs.getString("seat_number"));
 				seat.setAvailable(rs.getBoolean("is_available"));
 				availableSeats.add(seat);
@@ -106,9 +107,9 @@ public class DbBusDao implements IBusDao {
 			}
 		} catch (SQLException e) {
 			logger.error("SQL Error: " + e.getMessage());
-			throw new SQLException("Error fetching available seats", e);
+			throw new NotFoundException("Error fetching available seats", e);
 		} finally {
-			closeConnection(conn);
+			closeConnection(con);
 		}
 		return availableSeats;
 	}

@@ -20,6 +20,7 @@
 	<servlet-mapping>
 		<servlet-name>showbus</servlet-name>
 		<url-pattern>/findbus</url-pattern>
+		<url-pattern>/viewSeat</url-pattern>
 	</servlet-mapping>
 
 </web-app>
