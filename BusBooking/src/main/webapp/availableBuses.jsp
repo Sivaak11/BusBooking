@@ -43,7 +43,8 @@
 						<tr>
 							<th>Bus Number</th>
 							<th>Name</th>
-							<th>Date/time</th>
+							<th>Date</th>
+							<th>Time</th>
 							<th>Departure</th>
 							<th>Arrival</th>
 							<th>Book Ticket</th>
