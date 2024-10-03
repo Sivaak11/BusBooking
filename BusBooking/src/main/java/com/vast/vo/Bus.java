@@ -5,24 +5,24 @@ public class Bus {
 	private String name;
 	private String departure;
 	private String arrival;
-	private String date; // Add date field
-	private String departure_time; // Add departure_time field
+	private String date;
+	private String departure_time;
+	private int availableSeats;
 
-// Default constructor
 	public Bus() {
 	}
 
-// Parameterized constructor
-	public Bus(String bus_Number, String name, String departure, String arrival, String date, String departure_time) {
+	public Bus(String bus_Number, String name, String departure, String arrival, String date, String departure_time,
+			int availableSeats) {
 		this.bus_Number = bus_Number;
 		this.name = name;
 		this.departure = departure;
 		this.arrival = arrival;
 		this.date = date;
 		this.departure_time = departure_time;
+		this.availableSeats = availableSeats; // Initialize
 	}
 
-// Getters and setters
 	public String getBus_Number() {
 		return bus_Number;
 	}
@@ -69,5 +69,13 @@ public class Bus {
 
 	public void setDeparture_time(String departure_time) {
 		this.departure_time = departure_time; // Setter for departure_time
+	}
+
+	public int getAvailableSeats() {
+		return availableSeats;
+	}
+
+	public void setAvailableSeats(int availableSeats) {
+		this.availableSeats = availableSeats;
 	}
 }

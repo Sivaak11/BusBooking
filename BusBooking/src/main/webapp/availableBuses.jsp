@@ -61,7 +61,8 @@
 								out.println("<tr>");
 								out.println("<td>" + bus.getBus_Number() + "</td>");
 								out.println("<td>" + bus.getName() + "</td>");
-								out.println("<td>" + bus.getdatenadtime() + "</td>");
+								out.println("<td>" + bus.getDate() + "</td>");
+								out.println("<td>" + bus.getDeparture_time() + "</td>");
 								out.println("<td>" + bus.getDeparture() + "</td>");
 								out.println("<td>" + bus.getArrival() + "</td>");
 								out.println("<td><button class='seatbutton' type='button' onclick=\"location.href='viewSeat?busId="

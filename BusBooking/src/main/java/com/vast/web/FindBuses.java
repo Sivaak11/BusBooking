@@ -20,11 +20,10 @@ public class FindBuses implements Action {
 		IBusDao dao = DbBusDao.getDaoInstance();
 		String departure = request.getParameter("txtdeparture");
 		String arrival = request.getParameter("txtarrival");
+		String date = request.getParameter("txtdate");
 		logger.debug("Departure: " + departure + ", Arrival: " + arrival);
-
 		try {
-
-			List<Bus> buses = dao.findBuses(departure, arrival);
+			List<Bus> buses = dao.findBuses(departure, arrival, date);
 			request.setAttribute("buses", buses);
 		} catch (NotFoundException e) {
 			request.setAttribute("res", e.getMessage());
