@@ -62,10 +62,10 @@
 
 				<div class="subdata">
 
-					<label>Departure:</label>
+					<h4 style="font-size: 20px; margin: 10px">Route :</h4>
 					<%=request.getParameter("txtdeparture")%>
 
-					<label>Arrival:</label>
+					<label style="font-size: 20px;">To</label>
 					<%=request.getParameter("txtarrival")%>
 
 					<label>Date: </label>
@@ -92,16 +92,15 @@
 								out.println("<td>" + bus.getName() + "</td>");
 								out.println("<td>" + bus.getDeparture_time() + "</td>");
 								out.println("<td>" + bus.getAvailableSeats() + "</td>");
-								out.println("<td>");
-								out.println("<button type='button' onclick=\"updateSeatCount('" + bus.getBus_Number()
-								+ "', 'subtract')\">-</button>");
-								out.println("<span id='seatCount_" + bus.getBus_Number() + "'>0</span>");
-								out.println(
-								"<button type='button' onclick=\"updateSeatCount('" + bus.getBus_Number() + "', 'add')\">+</button>");
-								out.println("<button class='seatbutton' type='button' onclick='bookSeat(\"" + bus.getBus_Number()
-								+ "\")'>Book Seats</button>");
-								out.println("</td>");
-								out.println("</tr>");
+
+							     // New design for booking column
+                                out.println("<td class='seat-count-wrapper'>");
+                                out.println("<button type='button' onclick=\"updateSeatCount('" + bus.getBus_Number() + "', 'subtract')\">-</button>");
+                                out.println("<span id='seatCount_" + bus.getBus_Number() + "'>0</span>");
+                                out.println("<button type='button' onclick=\"updateSeatCount('" + bus.getBus_Number() + "', 'add')\">+</button>");
+                                out.println("<button class='seatbutton' type='button' onclick='bookSeat(\"" + bus.getBus_Number() + "\")'>Book Seats</button>");
+                                out.println("</td>");
+                                out.println("</tr>");
 							}
 						}
 						%>

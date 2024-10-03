@@ -78,6 +78,9 @@ public class DbBusDao implements IBusDao {
 		} finally {
 			closeConnection(con);
 		}
+		if(buses.isEmpty()) {
+			logger.info("bus is emptyyyy");
+		}
 
 		return buses;
 	}
