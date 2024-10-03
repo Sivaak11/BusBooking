@@ -74,6 +74,7 @@
 		</c:if>
 		</div>
 	</article >
+	
 	<footer class="footer-bottom">
 			<p>Copyright ©2022 All rights reserved | This template is made by</p>
 		
