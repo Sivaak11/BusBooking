@@ -42,81 +42,44 @@ public class DbBusDao implements IBusDao {
 
 	@Override
 	public List<Bus> findBuses(String departure, String arrival, String date) throws NotFoundException {
-	    List<Bus> buses = new ArrayList<>();
-	    Connection con = null;
-
-	    try {
-	        con = DriverManager.getConnection(rb.getString("url"), rb.getString("uname"), rb.getString("pwd"));
-	        logger.debug("MySQL server connected");
-	        
-	        
-	        String sql = "SELECT * FROM bus WHERE departure = ? AND arrival = ? AND date = ?";
-	        PreparedStatement ps = con.prepareStatement(sql);
-	        ps.setString(1, departure);
-	        ps.setString(2, arrival);
-	        ps.setString(3, date);
-	        ResultSet rs = ps.executeQuery();
-
-	        while (rs.next()) {
-	            Bus bus = new Bus();
-	            bus.setBus_Number(rs.getString("bus_Number"));
-	            bus.setName(rs.getString("name"));
-	            bus.setDeparture(rs.getString("departure"));
-	            bus.setArrival(rs.getString("arrival"));
-	            bus.setDate(rs.getString("date")); 
-	            bus.setDeparture_time(rs.getString("departure_time"));
-	            buses.add(bus);
-	        }
-
-	        if (buses.isEmpty()) {
-	            throw new NotFoundException("No buses found for the selected route.");
-	        }
-
-	        logger.info("Buses retrieved from database");
-	    } catch (SQLException e) {
-	        logger.error(e.getMessage());
-	    } finally {
-	        closeConnection(con);
-	    }
-
-	    return buses;
-	}
-
-
-	@Override
-	public List<Seats> getAvailableSeats(String busNumber) throws NotFoundException {
-		List<Seats> availableSeats = new ArrayList<>();
+		List<Bus> buses = new ArrayList<>();
 		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 
 		try {
 			con = DriverManager.getConnection(rb.getString("url"), rb.getString("uname"), rb.getString("pwd"));
-			logger.debug("connected mq sql server successfully..");
-			String sql = "SELECT * FROM seats WHERE bus_Number = ? AND is_available = 1";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, busNumber);
-			logger.debug(busNumber + " : busnumber");
-			rs = pstmt.executeQuery();
+			logger.debug("MySQL server connected");
+
+			String sql = "SELECT * FROM bus WHERE departure = ? AND arrival = ? AND date = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, departure);
+			ps.setString(2, arrival);
+			ps.setString(3, date);
+			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Seats seat = new Seats();
-				seat.setBusNumber(rs.getString("bus_Number"));
-				seat.setSeatNumber(rs.getString("seat_number"));
-				seat.setAvailable(rs.getBoolean("is_available"));
-				availableSeats.add(seat);
+				Bus bus = new Bus();
+				bus.setBus_Number(rs.getString("bus_Number"));
+				bus.setName(rs.getString("name"));
+				bus.setDeparture(rs.getString("departure"));
+				bus.setArrival(rs.getString("arrival"));
+				bus.setDate(rs.getString("date"));
+				bus.setDeparture_time(rs.getString("departure_time"));
+				bus.setAvailableSeats(rs.getInt("available_seats"));
+				buses.add(bus);
+			}
 
+			if (buses.isEmpty()) {
+				throw new NotFoundException("No buses found for the selected route.");
 			}
-			if (availableSeats.isEmpty()) {
-				throw new NotFoundException("No available seats found for bus number: " + busNumber);
-			}
+
+			logger.info("Buses retrieved from database");
 		} catch (SQLException e) {
-			logger.error("SQL Error: " + e.getMessage());
-			throw new NotFoundException("Error fetching available seats", e);
+			logger.error(e.getMessage());
 		} finally {
 			closeConnection(con);
 		}
-		return availableSeats;
+
+		return buses;
 	}
 
 	private void closeConnection(Connection conn) {

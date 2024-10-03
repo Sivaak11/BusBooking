@@ -20,7 +20,7 @@ public class Bus {
 		this.arrival = arrival;
 		this.date = date;
 		this.departure_time = departure_time;
-		this.availableSeats = availableSeats; // Initialize
+		this.availableSeats = availableSeats; 
 	}
 
 	public String getBus_Number() {
@@ -56,19 +56,19 @@ public class Bus {
 	}
 
 	public String getDate() {
-		return date; // Getter for date
+		return date; 
 	}
 
 	public void setDate(String date) {
-		this.date = date; // Setter for date
+		this.date = date; 
 	}
 
 	public String getDeparture_time() {
-		return departure_time; // Getter for departure_time
+		return departure_time; 
 	}
 
 	public void setDeparture_time(String departure_time) {
-		this.departure_time = departure_time; // Setter for departure_time
+		this.departure_time = departure_time; 
 	}
 
 	public int getAvailableSeats() {
