@@ -27,7 +27,7 @@
             <h1>Book Your Tickets</h1>
             <section class="booking-form">
 
-                <form class="firstform" action="findbus"  method="post">
+                <form class="firstform" action="findbus" >
 
                     <input type="text" name="txtdeparture" placeholder="From" required />
                     <input type="text" name="txtarrival" placeholder="To" required />
