@@ -39,13 +39,13 @@
 			  <div class="subdata">
 
                 <label>Departure:</label>
-                <span>${departure}</span>
+               <%=request.getParameter("txtdeparture") %>
 
                 <label>Arrival:</label>
-                <span>${arrival}</span>
+                <%=request.getParameter("txtarrival") %>
 
-                <label>Date:</label>
-                <span>${date}</span>
+                <label>Date: </label>
+                 <%=request.getParameter("txtdate") %>
             </div>
 				<table border="1" cellpadding="10">
 					<thead>
@@ -74,6 +74,18 @@
 								out.println("</tr>");
 							}
 						}
+					    if (buses != null && !buses.isEmpty()) {
+
+					        Bus bus = buses.get(0);  
+					        String departure = bus.getDeparture();
+					        String arrival = bus.getArrival();
+					        String date = bus.getDate();
+					        
+
+					        request.setAttribute("departure", departure);
+					        request.setAttribute("arrival", arrival);
+					        request.setAttribute("date", date);
+					    }
 						%>
 					</tbody>
 				</table>

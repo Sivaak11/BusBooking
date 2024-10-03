@@ -5,22 +5,24 @@ public class Bus {
 	private String name;
 	private String departure;
 	private String arrival;
-	private String date; 
-	private String departure_time; 
+	private String date;
+	private String departure_time;
+	private int availableSeats;
 
 	public Bus() {
 	}
 
-
-	public Bus(String bus_Number, String name, String departure, String arrival, String date, String departure_time) {
+	public Bus(String bus_Number, String name, String departure, String arrival, String date, String departure_time,
+			int availableSeats) {
+		
 		this.bus_Number = bus_Number;
 		this.name = name;
 		this.departure = departure;
 		this.arrival = arrival;
 		this.date = date;
 		this.departure_time = departure_time;
+		this.availableSeats = availableSeats; 
 	}
-
 
 	public String getBus_Number() {
 		return bus_Number;
@@ -68,5 +70,13 @@ public class Bus {
 
 	public void setDeparture_time(String departure_time) {
 		this.departure_time = departure_time; 
+	}
+
+	public int getAvailableSeats() {
+		return availableSeats;
+	}
+
+	public void setAvailableSeats(int availableSeats) {
+		this.availableSeats = availableSeats;
 	}
 }
