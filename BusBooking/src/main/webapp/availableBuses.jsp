@@ -29,7 +29,7 @@
 		var bookedSeats = parseInt(seatCountElement.innerText);
 
 		if (bookedSeats > 0) {
-			location.href = 'passengerdetails?busId=' + busNumber + '&seats='
+			location.href = 'bookSeat.jsp?busId=' + busNumber + '&seats='
 					+ bookedSeats;
 		} else {
 			alert("Please select at least one seat to book.");
