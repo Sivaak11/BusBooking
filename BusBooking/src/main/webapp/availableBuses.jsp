@@ -29,8 +29,7 @@
 		var bookedSeats = parseInt(seatCountElement.innerText);
 
 		if (bookedSeats > 0) {
-			// Redirect to booking page or send an AJAX request to book seats
-			location.href = 'viewSeat?busId=' + busNumber + '&seats='
+			location.href = 'passengerdetails?busId=' + busNumber + '&seats='
 					+ bookedSeats;
 		} else {
 			alert("Please select at least one seat to book.");

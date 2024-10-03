@@ -9,6 +9,6 @@ import com.vast.vo.Seats;
 public interface IBusDao {
 	List<Bus> findBuses(String departure, String arrival, String date) throws NotFoundException;
 
-	 
+	boolean updateAvailableSeats(String busId, int newAvailableSeats);
 
 }

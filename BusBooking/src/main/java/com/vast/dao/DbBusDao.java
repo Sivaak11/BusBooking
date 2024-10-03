@@ -94,4 +94,26 @@ public class DbBusDao implements IBusDao {
 		}
 	}
 
+	@Override
+	public boolean updateAvailableSeats(String busId, int newAvailableSeats) {
+
+		Connection con = null;
+		try {
+			con = DriverManager.getConnection(rb.getString("url"), rb.getString("uname"), rb.getString("pwd"));
+			logger.debug("MySQL server connected");
+			String sql = "UPDATE buses SET available_seats = ? WHERE bus_Number = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, newAvailableSeats);
+			ps.setString(2, busId);
+			int res = ps.executeUpdate();
+			if (res > 0)
+				return true;
+			logger.info("seat modified successfully");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 }
