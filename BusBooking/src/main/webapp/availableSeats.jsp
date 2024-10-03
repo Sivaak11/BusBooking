@@ -23,11 +23,12 @@
 			</div>
 		</div>
 	</header>
-	<article>
-		<h2 style="color: orange;">Available Seats</h2>
-		<div class="hero">
+	<h2 style="color: orange; text-align: center; padding: 10px;">Available Seats</h2>
+	<article class="hero">
+		
+		<div >
 
-			<!-- Check if there is any error message -->
+			
 			<%
 			request.getParameter("busId");
 			%>
@@ -64,7 +65,7 @@
 							<input type="hidden" name="seatNumber"
 								value="<%=seats.getSeatNumber()%>"> <input type="hidden"
 								name="busNumber" value="<%=seats.getBusNumber()%>">
-							<button type="submit">Book Now</button>
+							<button class="seatbutton" type="submit">Book Now</button>
 						</form>
 					</td>
 					<!-- Button added here -->
@@ -83,5 +84,9 @@
 			%>
 		</div>
 	</article>
+	<footer class="footer-bottom">
+		<p>Copyright ©2022 All rights reserved</p>
+
+	</footer>
 </body>
 </html>

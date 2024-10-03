@@ -14,22 +14,22 @@
 </head>
 <body>
 
-	<header>
-		<div class="header-class">
-			<div class="logo">
-				<span style="color: red;"> Get </span> <span class="trusted">Bus-y</span>
-			</div>
-			<div class="well">
-				<a href="#">WELCOME</a>
-			</div>
-			<div class="nav">
-				<a href="#login" class="login">Login/SignUp</a>
-			</div>
-		</div>
-	</header>
-	<article >
+	<header class="header-class">
 
-		<div class="hero">
+		<div class="logo">
+			<span style="color: red;"> Get </span> <span class="trusted">Bus-y</span>
+		</div>
+		<div class="well">
+			<a href="#">WELCOME</a>
+		</div>
+		<div class="nav">
+			<a href="#login" class="login">Login/SignUp</a>
+		</div>
+
+	</header>
+	<article class="hero">
+
+
 
 		<c:if test="${not empty res}">
 			<p style="color: red;">${res}</p>
@@ -38,45 +38,48 @@
 		<c:if test="${not empty buses}">
 			<div class="table">
 				<table border="1" cellpadding="10">
-    <thead>
-        <tr>
-            <th>Bus Number</th>
-            <th>Name</th>
-            <th>Departure</th>
-            <th>Arrival</th>
-            <th>Book Ticket</th> <!-- New column for booking ticket -->
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Loop through each bus and display its details -->
-        <%
-        List<Bus> buses = (List<Bus>) request.getAttribute("buses");
-        if (buses != null) {
-            for (Bus bus : buses) {
-                out.println("<tr>");
-                out.println("<td>" + bus.getBus_Number() + "</td>");
-                out.println("<td>" + bus.getName() + "</td>");
-                out.println("<td>" + bus.getDeparture() + "</td>");
-                out.println("<td>" + bus.getArrival() + "</td>");
-                out.println("<td><button class='seatbutton' type='button' onclick=\"location.href='viewSeat?busId=" + bus.getBus_Number() + "'\">View Seat</button></td>");
-                out.println("</tr>");
-            }
-        }
-        %>
-    </tbody>
-</table>
+					<thead>
+						<tr>
+							<th>Bus Number</th>
+							<th>Name</th>
+							<th>Departure</th>
+							<th>Arrival</th>
+							<th>Book Ticket</th>
+							<!-- New column for booking ticket -->
+						</tr>
+					</thead>
+					<tbody>
+
+						<!-- Loop through each bus and display its details -->
+						<%
+						List<Bus> buses = (List<Bus>) request.getAttribute("buses");
+						if (buses != null) {
+							for (Bus bus : buses) {
+								out.println("<tr>");
+								out.println("<td>" + bus.getBus_Number() + "</td>");
+								out.println("<td>" + bus.getName() + "</td>");
+								out.println("<td>" + bus.getDeparture() + "</td>");
+								out.println("<td>" + bus.getArrival() + "</td>");
+								out.println("<td><button class='seatbutton' type='button' onclick=\"location.href='viewSeat?busId="
+								+ bus.getBus_Number() + "'\">View Seat</button></td>");
+								out.println("</tr>");
+							}
+						}
+						%>
+					</tbody>
+				</table>
 
 			</div>
 		</c:if>
 
 		<c:if test="${empty buses}">
-			<p>No buses available for the selected route.</p>
+
 		</c:if>
-		</div>
-	</article >
+
+	</article>
 	<footer class="footer-bottom">
-			<p>Copyright ©2022 All rights reserved | This template is made by</p>
-		
+		<p>Copyright ©2022 All rights reserved</p>
+
 	</footer>
 </body>
 </html>

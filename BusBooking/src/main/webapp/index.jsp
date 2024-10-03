@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="ISO-8859-1">
 <title>Bus Booking</title>
@@ -19,23 +20,24 @@
 			</div>
 		</div>
 	</header>
-	<article>
-		<div class="hero">
-			<div class="overlay">
-				<h1>Book Your Tickets</h1>
-				<div class="booking-form">
-					<form action="findbus" method="post">
-						<input type="text" name="txtdeparture" placeholder="From" required>
-						<input type="text" name="txtarrival" placeholder="To" required>
-						<button type="submit" class="search-btn">Search bus</button>
-					</form>
-				</div>
+	<article class="hero">
 
-			</div>
+		<div class="overlay">
+			<h1>Book Your Tickets</h1>
+			<section class="booking-form" >
+				<form action="findbus" method="post">
+
+					<input type="text" name="txtdeparture" placeholder="From" required />
+					
+					<input type="text" name="txtarrival" placeholder="To" required>
+					<button type="submit" class="search-btn">Search bus</button>
+				</form>
+			</section>
+
 		</div>
 	</article>
 	<footer class="footer-bottom">
-		<p>Copyright ©2022 All rights reserved | This template is made by</p>
+		<p>Copyright ©2022 All rights reserved</p>
 
 	</footer>
 </body>
