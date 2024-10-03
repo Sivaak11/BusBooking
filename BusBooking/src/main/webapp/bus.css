@@ -11,18 +11,19 @@ body {
 }
 
 .header-class {
+	padding-left: px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 20px 20px;
 	background-color: white;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	height: 90px;
 }
 
 .logo {
 	display: flex;
 	align-items: center;
-	font-size: 24px;
+	font-size: medium;
 }
 
 .trusted {
@@ -44,7 +45,7 @@ body {
 }
 
 .nav a:hover {
-	color: #ff4500;
+	color: hsl(226, 100%, 50%);
 }
 
 .nav .login {
@@ -58,7 +59,7 @@ body {
 }
 
 .hero {
-	height: 79vh;
+	height: 460px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -66,11 +67,12 @@ body {
 }
 
 .overlay {
-	background: rgba(255, 165, 0, 0.9); /* orange overlay */
 	background: rgba(255, 165, 0, 0.9);
 	padding: 20px;
 	border-radius: 10px;
 	text-align: center;
+	width: 600px;
+	height: 200px;
 }
 
 h1 {
@@ -87,11 +89,11 @@ h1 {
 }
 
 .booking-form input {
-	padding: 10px;
-	border: none;
+	padding: 10px; border : none;
 	border-radius: 5px;
 	font-size: 16px;
 	outline: none;
+	border: none;
 }
 
 .booking-form input[type="text"] {
@@ -139,54 +141,9 @@ footer {
 	padding: 0 20px;
 }
 
-.footer-column {
-	width: 23%;
-	min-width: 250px;
-}
-
-.footer-column h2 {
-	font-size: 28px;
-	color: #fff;
-	margin-bottom: 20px;
-}
-
-.footer-column h3 {
-	font-size: 20px;
-	color: #fff;
-	margin-bottom: 20px;
-}
-
-.footer-column p, .footer-column a {
-	color: #ccc;
-	font-size: 14px;
-	margin-bottom: 10px;
-	line-height: 1.6;
-}
-
-.footer-column a:hover {
-	color: #fff;
-}
-
-.footer-column ul {
-	list-style: none;
-}
-
-.footer-column ul li {
-	margin-bottom: 10px;
-}
-
-.footer-column ul li a {
-	color: #ccc;
-	text-decoration: none;
-}
-
-.footer-column ul li a:hover {
-	color: #fff;
-}
-
 .footer-bottom {
 	text-align: center;
-	padding: 20px 0;
+	padding: 12px 0;
 	background-color: #14132a;
 	color: #ccc;
 }
@@ -205,7 +162,8 @@ table {
 	width: 100%;
 	border-collapse: collapse;
 	box-shadow: 0px 4px 10px orange;
-	border-radius: 15px; /* Increased for a more curved edge */
+	border-radius: 15px;
+	/* Increased for a more curved edge */
 	overflow: hidden;
 }
 
@@ -216,8 +174,10 @@ th, td {
 }
 
 thead th {
-	background-color: #ff4500; /* Light orange background */
-	color: black; /* Dark gray text */
+	background-color: #ff4500;
+	/* Light orange background */
+	color: black;
+	/* Dark gray text */
 }
 
 tbody tr {
@@ -237,11 +197,12 @@ td {
 }
 
 .seatbutton {
-	border: #ff7f50 solid; /* Coral color border */
+	border: #ff7f50 solid;
 	border-radius: 4px;
 	height: 30px;
 	width: 100px;
-	background-color: #ffffff; /* Coral background */
+	background-color: #ffffff;
+	/* Coral background */
 	color: black;
 	font-size: larger;
 	transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s
@@ -251,10 +212,9 @@ td {
 
 .seatbutton:hover {
 	background-color: #ff4500;
-	color: white; /* Coral text on hover */
+	color: white;
 	cursor: pointer;
 }
-
 
 .passenger-form {
 	width: 100%;
@@ -269,21 +229,30 @@ td {
 .form-label {
 	font-size: 16px;
 	color: #333;
-	display: block;
+	display: inline-flex;
 	margin-bottom: 8px;
+	margin: 0 auto; 
+
 }
 
-.form-input, .form-select {
+.form-input {
+	width: 50%;
+	padding: 10px;
+	margin: 0 auto;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 13px;
+}
+
+.form-select {
 	width: 100%;
 	padding: 10px;
 	margin-bottom: 20px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	font-size: 14px;
-}
-
-.form-select {
 	cursor: pointer;
+	font-size: 13px;
 }
 
 .form-section-heading {
@@ -301,21 +270,17 @@ td {
 	cursor: pointer;
 	font-size: 16px;
 	width: 100%;
+	font-size: 13px;
 }
 
 .form-button:hover {
 	background-color: darkorange;
 }
 
-/* Media query for responsiveness */
-@media ( max-width : 600px) {
-	.passenger-form {
-		padding: 15px;
-	}
-	.form-label {
-		font-size: 14px;
-	}
-	.form-input, .form-select, .form-button {
-		font-size: 13px;
-	}
+.passenger-form {
+	padding: 15px;
+}
+
+.form-label {
+	font-size: 14px;
 }
