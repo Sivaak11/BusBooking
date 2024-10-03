@@ -47,7 +47,7 @@
 
 		<form method="post" class="passenger-form" action="ticket.jsp">
 			<%
-			// Loop to create input fields for each passenger
+			 
 			for (int i = 1; i <= seats; i++) {
 			%>
 			<h3 style="color: orange;">
