@@ -45,9 +45,18 @@
 		}
 		%>
 
-		<form method="post" class="passenger-form" action="ticket.jsp">
+		<form  class="passenger-form" action="ticket.jsp">
+			<input type="hidden" name="busId" value="<%=busId%>"> <input
+				type="hidden" name="busName" value="Your Bus Name Here">
+			<!-- Replace with actual bus name -->
+			<input type="hidden" name="departure" value="Your Departure Here">
+			<!-- Replace with actual departure -->
+			<input type="hidden" name="arrival" value="Your Arrival Here">
+			<input type="hidden" name="seats" value="<%=seats%>">
+
+			<!-- Replace with actual arrival -->
+
 			<%
-			 
 			for (int i = 1; i <= seats; i++) {
 			%>
 			<h3 style="color: orange;">
@@ -55,20 +64,17 @@
 				<%=i%>
 				Details
 			</h3>
-			<label for="name_<%=i%>" class="form-label">Passenger Name:</label>
-			<input type="text" id="name_<%=i%>" name="name_<%=i%>"
-				class="form-input" required><br>
-			<br> <label for="age_<%=i%>" class="form-label">Age:</label> <input
-				type="number" id="age_<%=i%>" name="age_<%=i%>" min="2"
-				class="form-input" required><br>
+			<label for="name_<%=i%>" class="form-label">Passenger Name:</label> <input
+				type="text" id="name_<%=i%>" name="name_<%=i%>" class="form-input"
+				required><br> <br> <label for="age_<%=i%>"
+				class="form-label">Age:</label> <input type="number" id="age_<%=i%>"
+				name="age_<%=i%>" min="2" class="form-input" required><br>
 			<br> <label for="mobile_<%=i%>" class="form-label">Mobile
-				Number:</label> <input type="tel" id="mobile_<%=i%>"
-				name="mobile_<%=i%>" class="form-input" pattern="[0-9]{10}"
-				required><br>
-			<br> <label for="address_<%=i%>" class="form-label">Address:</label>
-			<input type="text" id="address_<%=i%>" name="address_<%=i%>"
-				class="form-input" required><br>
-			<br>
+				Number:</label> <input type="tel" id="mobile_<%=i%>" name="mobile_<%=i%>"
+				class="form-input" pattern="[0-9]{10}" required><br> <br>
+			<label for="address_<%=i%>" class="form-label">Address:</label> <input
+				type="text" id="address_<%=i%>" name="address_<%=i%>"
+				class="form-input" required><br> <br>
 			<%
 			}
 			%>
@@ -81,11 +87,11 @@
 				<option value="debit-card">Debit Card</option>
 				<option value="net-banking">Net Banking</option>
 				<option value="upi">UPI</option>
-			</select><br>
-			<br>
+			</select><br> <br>
 
 			<button type="submit" class="form-button">Pay Now</button>
 		</form>
+
 	</article>
 
 	<footer class="footer-bottom">

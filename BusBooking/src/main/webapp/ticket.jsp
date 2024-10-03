@@ -1,87 +1,80 @@
-<%@page import="com.vast.vo.Seats"%>
-<%@page import="java.util.List"%>
-<%@page import="java.io.IOException"%>
-<%@page import="javax.servlet.ServletException"%>
-<%@page import="javax.servlet.annotation.WebServlet"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="javax.servlet.ServletException" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passenger Details</title>
+    <title>Booking Confirmation</title>
     <link rel="stylesheet" href="bus.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .confirmation-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .confirmation-heading {
+            color: orange;
+            text-align: center;
+        }
+        .details {
+            margin-top: 20px;
+        }
+        .details label {
+            font-weight: bold;
+        }
+    </style>
 </head>
-<style>
-    /* Your existing CSS here */
-</style>
 <body>
-    <header>
-        <div class="header-class">
-            <div class="logo">
-                <span style="color: red;">Get</span> <span class="trusted">Bus-y</span>
-            </div>
-            <div class="well">
-                <a href="#">WELCOME</a>
-            </div>
-            <div class="nav">
-                <a href="#login" class="login">Login/SignUp</a>
-            </div>
-        </div>
-    </header>
 
-    <article>
-        <h2 style="color: orange; text-align: center; padding:15px 0px;">Passenger Details</h2>
+    <div class="confirmation-container">
+        <h1 class="confirmation-heading">Thank You for Booking!</h1>
 
         <%
-            // Fetch the busId and number of seats from the request
             String busId = request.getParameter("busId");
-            int seats = Integer.parseInt(request.getParameter("seats")); // Get the number of seats
+            String busName = request.getParameter("busName");
+            String departure = request.getParameter("departure");
+            String arrival = request.getParameter("arrival");
+           int seats = Integer.parseInt(request.getParameter("seats"));
 
-            // Display any error message if it exists in the request
-            if (request.getAttribute("res") != null) {
-        %>
-            <p style="color: red;"><%= request.getAttribute("res") %></p>
-        <%
+            // Collect passenger names
+            String[] passengerNames = new String[seats];
+            for (int i = 1; i <= seats; i++) {
+                passengerNames[i - 1] = request.getParameter("name_" + i);
             }
         %>
 
-        <form method="post" class="passenger-form" action="">
-            <%
-                // Loop to create input fields for each passenger
-                for (int i = 1; i <= seats; i++) {
-            %>
-                <h3 style="color: orange;">Passenger <%= i %> Details</h3>
-                <label for="name_<%= i %>" class="form-label">Passenger Name:</label>
-                <input type="text" id="name_<%= i %>" name="name_<%= i %>" class="form-input" required><br><br>
-
-                <label for="age_<%= i %>" class="form-label">Age:</label>
-                <input type="number" id="age_<%= i %>" name="age_<%= i %>" min="2" class="form-input" required><br><br>
-
-                <label for="mobile_<%= i %>" class="form-label">Mobile Number:</label>
-                <input type="tel" id="mobile_<%= i %>" name="mobile_<%= i %>" class="form-input" pattern="[0-9]{10}" required><br><br>
-
-                <label for="address_<%= i %>" class="form-label">Address:</label>
-                <input type="text" id="address_<%= i %>" name="address_<%= i %>" class="form-input" required><br><br>
-            <%
-                }
-            %>
-
-            <h3 class="form-section-heading">Payment</h3>
-            <label for="payment-method" class="form-label">Payment Method:</label>
-            <select id="payment-method" name="payment-method" class="form-select" required>
-                <option value="credit-card">Credit Card</option>
-                <option value="debit-card">Debit Card</option>
-                <option value="net-banking">Net Banking</option>
-                <option value="upi">UPI</option>
-            </select><br><br>
-
-            <button type="submit" class="form-button">Pay Now</button>
-        </form>
-    </article>
+        <div class="details">
+            <p><label>Bus Number:</label> <%= busId %></p>
+            <p><label>Bus Name:</label> <%= busName %></p>
+            <p><label>Departure:</label> <%= departure %></p>
+            <p><label>Arrival:</label> <%= arrival %></p>
+            <p><label>Number of Seats:</label> <%= seats %></p>
+            <p><label>Passenger Names:</label></p>
+            <ul>
+                <%
+                    for (String name : passengerNames) {
+                        out.println("<li>" + name + "</li>");
+                    }
+                %>
+            </ul>
+        </div>
+    </div>
 
     <footer class="footer-bottom">
         <p>Copyright ©2022 All rights reserved</p>
     </footer>
+
 </body>
 </html>
