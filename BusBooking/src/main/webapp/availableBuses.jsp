@@ -29,24 +29,31 @@
 	</header>
 	<article class="hero">
 
-
-
 		<c:if test="${not empty res}">
 			<p style="color: red;">${res}</p>
 		</c:if>
 
 		<c:if test="${not empty buses}">
+		
 			<div class="table">
+			  <div class="subdata">
+
+                <label>Departure:</label>
+                <span>${departure}</span>
+
+                <label>Arrival:</label>
+                <span>${arrival}</span>
+
+                <label>Date:</label>
+                <span>${date}</span>
+            </div>
 				<table border="1" cellpadding="10">
 					<thead>
-					
+
 						<tr>
 							<th>Bus Number</th>
 							<th>Name</th>
-							<th>Date</th>
 							<th>Time</th>
-							<th>Departure</th>
-							<th>Arrival</th>
 							<th>Book Ticket</th>
 							<!-- New column for booking ticket -->
 						</tr>
@@ -61,9 +68,7 @@
 								out.println("<tr>");
 								out.println("<td>" + bus.getBus_Number() + "</td>");
 								out.println("<td>" + bus.getName() + "</td>");
-								out.println("<td>" + bus.getdatenadtime() + "</td>");
-								out.println("<td>" + bus.getDeparture() + "</td>");
-								out.println("<td>" + bus.getArrival() + "</td>");
+								out.println("<td>" + bus.getDeparture_time() + "</td>");
 								out.println("<td><button class='seatbutton' type='button' onclick=\"location.href='viewSeat?busId="
 								+ bus.getBus_Number() + "'\">View Seat</button></td>");
 								out.println("</tr>");
