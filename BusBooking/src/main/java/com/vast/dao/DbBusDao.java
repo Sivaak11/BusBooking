@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 
 import com.vast.Exception.NotFoundException;
 import com.vast.vo.Bus;
-import com.vast.vo.Seats;
 import com.vast.vo.UserDetails;
 
 public class DbBusDao implements IBusDao {
