@@ -22,7 +22,7 @@
 		<url-pattern>/findbus</url-pattern>
 		<url-pattern>/update</url-pattern>
 		<url-pattern>/viewticket</url-pattern>
-		
+		<url-pattern>/LogIn</url-pattern>
 	</servlet-mapping>
 
 </web-app>

@@ -1,4 +1,3 @@
-<%@page import="com.vast.vo.Seats"%>
 <%@page import="java.util.List"%>
 <%@page import="java.io.IOException"%>
 <%@page import="javax.servlet.ServletException"%>
@@ -18,7 +17,7 @@
 <body>
 
 <c:if test="${sessionScope.login eq null }">
-	<jsp:forward page="Login.jsp">
+	<jsp:forward page="LogIn.jsp">
 		<jsp:param value="Your Not Authenticated" name="msg" />
 	</jsp:forward>
 	</c:if>

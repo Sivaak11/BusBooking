@@ -13,7 +13,7 @@ public class DoLoginAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		IBusDao dao = DbBusDao.getDaoInstance();
-		String viewName = "Login.jsp";
+		String viewName = "LogIn.jsp";
 		String uname = request.getParameter("txtuname");
 		String pwd = request.getParameter("txtpass");
 		UserDetails login = dao.getLoginDetails(uname, pwd);

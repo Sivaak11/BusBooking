@@ -96,8 +96,12 @@
                 <div>
                     <input type="submit" value="Login" />
                 </div>
+                <a href="">NewUser?SignUp</a>
             </section>
         </form>
     </article>
+    <footer class="footer-bottom">
+        <p>Copyright ©2022 All rights reserved</p>
+    </footer>
 </body>
 </html>
