@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import com.vast.Exception.NotFoundException;
 import com.vast.vo.Bus;
 import com.vast.vo.Seats;
+import com.vast.vo.UserDetails;
 
 public class DbBusDao implements IBusDao {
 
@@ -78,7 +79,7 @@ public class DbBusDao implements IBusDao {
 		} finally {
 			closeConnection(con);
 		}
-		if(buses.isEmpty()) {
+		if (buses.isEmpty()) {
 			logger.info("bus is emptyyyy");
 		}
 
@@ -106,7 +107,7 @@ public class DbBusDao implements IBusDao {
 			ps.setInt(1, newAvailableSeats);
 			ps.setString(2, busId);
 			int res = ps.executeUpdate();
-			logger.debug("res value"+res);
+			logger.debug("res value" + res);
 			if (res > 0)
 				return true;
 			logger.info("seat modified successfully");
@@ -115,6 +116,36 @@ public class DbBusDao implements IBusDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public UserDetails getLoginDetails(String uname, String pwd) {
+		
+		Connection conn = null;
+		UserDetails login = null;
+		try {
+			conn = DriverManager.getConnection(rb.getString("url"),rb.getString("uname"),rb.getString("pwd"));
+			logger.debug("connected ti my sql server successfully");
+			String sql = "selected * from login where user_id =? and pwd=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, uname);
+			ps.setString(1, pwd);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				
+				login = new UserDetails();
+				login.setUserId(rs.getString("user_id"));
+				login.setUserName(rs.getString("user_name"));
+				
+			}
+			logger.info("login retrived from Database");
+			
+		}catch (SQLException e) {
+			logger.debug(e.getMessage());
+		}finally {
+			closeConnection(conn);
+		}
+		return login;
 	}
 
 }

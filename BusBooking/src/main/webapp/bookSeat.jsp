@@ -16,6 +16,13 @@
 /* Your existing CSS here */
 </style>
 <body>
+
+<c:if test="${sessionScope.login eq null }">
+	<jsp:forward page="Login.jsp">
+		<jsp:param value="Your Not Authenticated" name="msg" />
+	</jsp:forward>
+	</c:if>
+
 	<header>
 		<div class="header-class">
 			<div class="logo">

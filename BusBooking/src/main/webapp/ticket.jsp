@@ -52,7 +52,6 @@ body {
 		String arrival = request.getParameter("arrival");
 		int seats = Integer.parseInt(request.getParameter("seats"));
 
-		// Collect passenger names
 		String[] passengerNames = new String[seats];
 		for (int i = 1; i <= seats; i++) {
 			passengerNames[i - 1] = request.getParameter("name_" + i);

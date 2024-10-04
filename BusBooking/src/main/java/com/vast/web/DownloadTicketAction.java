@@ -21,11 +21,9 @@ public class DownloadTicketAction implements Action {
         String busNumber = request.getParameter("busNumber");
         String seatNumber = request.getParameter("seatNumber");
 
-        // Set response content type and header for downloading
         response.setContentType("text/plain");
         response.setHeader("Content-Disposition", "attachment; filename=ticket.txt");
 
-        // Create the ticket content
         String ticketContent = "Passenger Name: " + name + "\n" +
                                "Age: " + age + "\n" +
                                "Mobile Number: " + mobile + "\n" +
@@ -34,14 +32,12 @@ public class DownloadTicketAction implements Action {
                                "Bus Number: " + busNumber + "\n" +
                                "Seat Number: " + seatNumber;
 
-        // Write the content to the output stream
         try (PrintWriter out = response.getWriter()) {
             out.println(ticketContent);
         } catch (IOException e) {
             e.printStackTrace();
-            // Log the error if necessary
         }
 
-        return "ticket.jsp"; // No need to return a view name
+        return "ticket.jsp";
     }
 }

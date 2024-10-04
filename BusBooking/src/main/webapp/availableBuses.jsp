@@ -92,7 +92,7 @@
 								out.println("<td>" + bus.getDeparture_time() + "</td>");
 								out.println("<td>" + bus.getAvailableSeats() + "</td>");
 
-							     // New design for booking column
+							   
                                 out.println("<td class='seat-count-wrapper'>");
                                 out.println("<button type='button' onclick=\"updateSeatCount('" + bus.getBus_Number() + "', 'subtract')\">-</button>");
                                 out.println("<span id='seatCount_" + bus.getBus_Number() + "'>0</span>");
