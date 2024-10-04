@@ -13,19 +13,22 @@ public class DoLoginAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		IBusDao dao = DbBusDao.getDaoInstance();
-		String viewName = "Login.jsp";
+
+		String viewName = "LogIn.jsp";
+
 		String uname = request.getParameter("txtuname");
 		String pwd = request.getParameter("txtpass");
 		UserDetails login = dao.getLoginDetails(uname, pwd);
 		HttpSession session = request.getSession(false);
-		if(null != login) {
+
+		if (null != login) {
 			session.setAttribute("login", login);
 			session.setMaxInactiveInterval(10 * 60);
 			viewName = "index.jsp";
-		}else {
+		} else {
 			request.setAttribute("msg", "you are not authenticated, check your credentials ");
 		}
-		
+
 		return viewName;
 	}
 

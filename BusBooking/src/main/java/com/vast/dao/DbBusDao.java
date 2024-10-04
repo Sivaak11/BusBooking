@@ -11,9 +11,9 @@ import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
 
+import com.vast.Exception.AlreadyExistException;
 import com.vast.Exception.NotFoundException;
 import com.vast.vo.Bus;
-import com.vast.vo.Seats;
 import com.vast.vo.UserDetails;
 
 public class DbBusDao implements IBusDao {
@@ -86,15 +86,6 @@ public class DbBusDao implements IBusDao {
 		return buses;
 	}
 
-	private void closeConnection(Connection conn) {
-		try {
-			conn.close();
-			logger.debug("connection closed");
-		} catch (SQLException e) {
-			logger.error(e.getMessage());
-		}
-	}
-
 	@Override
 	public boolean updateAvailableSeats(String busId, int newAvailableSeats) {
 
@@ -120,32 +111,67 @@ public class DbBusDao implements IBusDao {
 
 	@Override
 	public UserDetails getLoginDetails(String uname, String pwd) {
-		
 		Connection conn = null;
 		UserDetails login = null;
 		try {
-			conn = DriverManager.getConnection(rb.getString("url"),rb.getString("uname"),rb.getString("pwd"));
-			logger.debug("connected ti my sql server successfully");
-			String sql = "selected * from login where user_id =? and pwd=?";
+			conn = DriverManager.getConnection(rb.getString("url"), rb.getString("uname"), rb.getString("pwd"));
+			logger.debug("connected to Mysqlserver sucessfully");
+			String sql = "select * from login where user_id =? and pwd=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, uname);
-			ps.setString(1, pwd);
+			ps.setString(2, pwd);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				
 				login = new UserDetails();
 				login.setUserId(rs.getString("user_id"));
 				login.setUserName(rs.getString("user_name"));
-				
+
 			}
-			logger.info("login retrived from Database");
-			
-		}catch (SQLException e) {
-			logger.debug(e.getMessage());
-		}finally {
+			logger.info("Login retrived from DataBase");
+
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		} finally {
+
 			closeConnection(conn);
 		}
 		return login;
+	}
+
+	@Override
+	public boolean signUp(UserDetails login) throws AlreadyExistException {
+		Connection con = null;
+		{
+			try {
+				con = DriverManager.getConnection(rb.getString("url"), rb.getString("uname"), rb.getString("pwd"));
+				logger.debug("mysql server connected");
+				String sql = "INSERT INTO login values (?,?,?)";
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setString(1, login.getUserId());
+				ps.setString(2, login.getUserName());
+				ps.setString(3, login.getPwd());
+				int res = ps.executeUpdate();
+				if (res > 0)
+					return true;
+			} catch (SQLException e) {
+				logger.error(e.getMessage());
+				if (e.getMessage().contains("Duplicate"))
+					throw new AlreadyExistException("user id alreadey existed try new id");
+			} finally {
+				closeConnection(con);
+			}
+		}
+		return false;
+	}
+
+	private void closeConnection(Connection conn) {
+		try {
+			conn.close();
+			logger.debug("connection closed");
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+
 	}
 
 }

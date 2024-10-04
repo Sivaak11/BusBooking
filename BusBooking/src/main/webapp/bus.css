@@ -351,3 +351,9 @@ td {
 	background-color: #ff4d4d;
 	color: white;
 }
+div.well {
+    font-family: sans-serif;
+    font-size: xx-large;
+    color: coral;
+    font-weight: 800;
+}

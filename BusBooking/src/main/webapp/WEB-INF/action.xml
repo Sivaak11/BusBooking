@@ -2,5 +2,5 @@
 <actions>
 	<action uri="/findbus" class="com.vast.web.FindBuses" />
 	<action uri="/update" class="com.vast.web.BookingSeats" />
-	<action uri="/viewticket" class="com.vast.web.DownloadTicketAction" />
+	<action uri="/login" class="com.vast.web.DoLoginAction" />
 </actions>
