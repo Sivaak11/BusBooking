@@ -1,20 +1,9 @@
 package com.vast.vo;
 
 public class UserDetails {
-
 	private String userId;
 	private String userName;
 	private String pwd;
-
-	public UserDetails() {
-		
-	}
-	public UserDetails(String userId, String userName, String pwd) {
-		super();
-		this.userId = userId;
-		this.userName = userName;
-		this.pwd = pwd;
-	}
 
 	public String getUserId() {
 		return userId;
@@ -39,7 +28,5 @@ public class UserDetails {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	
-	
 
 }

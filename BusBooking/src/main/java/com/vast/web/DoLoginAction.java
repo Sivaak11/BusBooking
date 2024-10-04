@@ -18,14 +18,15 @@ public class DoLoginAction implements Action {
 		String pwd = request.getParameter("txtpass");
 		UserDetails login = dao.getLoginDetails(uname, pwd);
 		HttpSession session = request.getSession(false);
-		if(null != login) {
+
+		if (null != login) {
 			session.setAttribute("login", login);
 			session.setMaxInactiveInterval(10 * 60);
 			viewName = "index.jsp";
-		}else {
+		} else {
 			request.setAttribute("msg", "you are not authenticated, check your credentials ");
 		}
-		
+
 		return viewName;
 	}
 

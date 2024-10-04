@@ -16,7 +16,6 @@ body {
 	margin: 0;
 	padding: 20px;
 }
-
 .confirmation-container {
 	max-width: 600px;
 	margin: auto;

@@ -1,3 +1,4 @@
+
 <%@page import="java.util.List"%>
 <%@page import="java.io.IOException"%>
 <%@page import="javax.servlet.ServletException"%>
@@ -16,12 +17,12 @@
 </style>
 <body>
 
-<c:if test="${sessionScope.login eq null }">
-	<jsp:forward page="LogIn.jsp">
-		<jsp:param value="Your Not Authenticated" name="msg" />
-	</jsp:forward>
+	<c:if test="${sessionScope.login eq null }">
+		<jsp:forward page="LogIn.jsp">
+			<jsp:param value="Your Not Authenticated" name="msg" />
+		</jsp:forward>
+s
 	</c:if>
-
 	<header>
 		<div class="header-class">
 			<div class="logo">
@@ -51,14 +52,14 @@
 		}
 		%>
 
-		<form  class="passenger-form" action="ticket.jsp">
+		<form class="passenger-form" action="ticket.jsp">
 			<input type="hidden" name="busId" value="<%=busId%>"> <input
 				type="hidden" name="busName" value="Your Bus Name Here">
 			<!-- Replace with actual bus name -->
-			<input type="hidden" name="departure" value="Your Departure Here">
+			<input type="hidden" name="departure" value="">
 			<!-- Replace with actual departure -->
-			<input type="hidden" name="arrival" value="Your Arrival Here">
-			<input type="hidden" name="seats" value="<%=seats%>">
+			<input type="hidden" name="arrival" value=""> <input
+				type="hidden" name="seats" value="<%=seats%>">
 
 			<!-- Replace with actual arrival -->
 
@@ -75,16 +76,16 @@
 				required><br> <br> <label for="age_<%=i%>"
 				class="form-label">Age:</label> <input type="number" id="age_<%=i%>"
 				name="age_<%=i%>" min="2" class="form-input" required><br>
-			<br> <label for="mobile_<%=i%>" class="form-label">Mobile
-				Number:</label> <input type="tel" id="mobile_<%=i%>" name="mobile_<%=i%>"
-				class="form-input" pattern="[0-9]{10}" required><br> <br>
-			<label for="address_<%=i%>" class="form-label">Address:</label> <input
-				type="text" id="address_<%=i%>" name="address_<%=i%>"
-				class="form-input" required><br> <br>
+			<br>
 			<%
 			}
 			%>
-
+			<br> <label for="mobile" class="form-label">Mobile
+				Number:</label> <input type="tel" id="mobile" name="mobile"
+				class="form-input" pattern="[0-9]{10}" required><br> <br>
+			<label for="address" class="form-label">Address:</label> <input
+				type="text" id="address" name="address" class="form-input" required><br>
+			<br>
 			<h3 class="form-section-heading">Payment</h3>
 			<label for="payment-method" class="form-label">Payment
 				Method:</label> <select id="payment-method" name="payment-method"
