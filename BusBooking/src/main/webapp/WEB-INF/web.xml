@@ -21,8 +21,9 @@
 		<servlet-name>showbus</servlet-name>
 		<url-pattern>/findbus</url-pattern>
 		<url-pattern>/update</url-pattern>
-		<url-pattern>/viewticket</url-pattern>
+		<url-pattern>/ticket</url-pattern>
 		<url-pattern>/login</url-pattern>
+		<url-pattern>/showticket</url-pattern>
 	</servlet-mapping>
 
 </web-app>

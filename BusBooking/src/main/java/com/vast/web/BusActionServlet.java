@@ -22,7 +22,7 @@ import com.vast.dao.DbBusDao;
 import com.vast.dao.IBusDao;
 
 /**
- Servlet implementation class BusActionServlet
+ * Servlet implementation class BusActionServlet
  */
 @WebServlet("/BusActionServlet")
 public class BusActionServlet extends HttpServlet {
@@ -39,6 +39,7 @@ public class BusActionServlet extends HttpServlet {
 	}
 
 	public void init() {
+	
 		IBusDao dao = DbBusDao.getDaoInstance();
 		logger.debug("instance created");
 		Map<String, String> actionMap = readUriMappings();

@@ -12,13 +12,13 @@ body {
 }
 
 .header-class {
-	padding-left: px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	background-color: white;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	height: 90px;
+	padding: 0 20px;
 }
 
 .logo {
@@ -32,6 +32,12 @@ body {
 	color: #777;
 }
 
+h3 {
+	font-size: 24px;
+	color: coral;
+	margin-right: 20px;
+}
+
 .nav {
 	display: flex;
 	align-items: center;
@@ -42,133 +48,138 @@ body {
 	text-decoration: none;
 	margin-left: 20px;
 	font-size: 16px;
-	padding: 5px 10px;
 }
 
 .nav a:hover {
 	color: hsl(226, 100%, 50%);
 }
 
-.nav .login {
-	color: red;
-	font-weight: bold;
-}
-
-.well a {
-	text-decoration: none;
-	font-size: 24px;
-}
-
 .hero {
-	margin: 130px 0px;
-	height: auto;
+	margin: 20px;
+	padding: 40px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	text-align: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	position: relative;
+	height: calc(100vh - 120px);
+	/* Adjusting for header and footer height */
+	background-color: #ffffff;
 }
 
 .overlay {
 	background: rgba(255, 165, 0, 0.9);
 	padding: 20px;
 	border-radius: 10px;
-	text-align: center;
-	width: 650px;
-	height: 200px;
 }
 
 h1 {
-	color: white;
 	font-size: 36px;
+	color: white;
 	margin-bottom: 20px;
 }
 
 .booking-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.firstform {
 	display: flex;
 	gap: 10px;
 	flex-wrap: wrap;
 	justify-content: center;
 }
 
-.booking-form input {
-	margin: 2px 10px;
+.firstform input[type="text"], .firstform input[type="date"] {
 	padding: 10px;
-	border: none;
+	border: 1px solid #ccc;
 	border-radius: 5px;
 	font-size: 16px;
-	outline: none;
-	border: none;
+	width: 200px; /* Fixed width for consistency */
 }
 
-.booking-form input[type="text"] {
-	width: 150px;
-}
-
-.booking-form input[type="date"] {
-	width: 140px;
-}
-
-.booking-form button {
+.firstform button {
 	padding: 10px 20px;
-	background-color: white;
-	border: 1px solid #ddd;
+	background-color: #ff4500;
+	border: none;
 	border-radius: 5px;
+	color: white;
 	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s;
 }
 
-.booking-form .search-btn {
-	background-color: #ff4500;
+.firstform button:hover {
+	background-color: darkorange;
+}
+
+.loginfrm {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	width: 300px;
+}
+
+.article_Title {
+	font-size: 24px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.err {
+	color: red;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+/* Input Fields */
+input[type="text"], input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+/* Submit Button */
+input[type="submit"] {
+	width: 100%;
+	padding: 10px;
+	background-color: #007bff;
 	color: white;
 	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
 }
 
-.booking-form button:hover {
-	background-color: #eee;
+input[type="submit"]:hover {
+	background-color: #0056b3;
 }
 
-.booking-form .search-btn:hover {
-	background-color: #ff5733;
+.subdata {
+	font-size: 18px;
+	margin-bottom: 20px;
+	padding: 10px;
+	background-color: #FF4500;
+	color: white;
+	border-radius: 5px;
 }
 
-footer {
-	background-color: #1c1b2d;
-	color: #ccc;
-	padding: 50px 0;
-}
-
-.container {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 20px;
-}
-
-.footer-bottom {
-	text-align: center;
-	padding: 12px 0;
-	background-color: #14132a;
-	color: #ccc;
-}
-
-.footer-bottom p a {
-	color: #ccc;
-	text-decoration: none;
-}
-
-.footer-bottom p a:hover {
-	color: #fff;
+.table {
+	margin-top: 20px;
 }
 
 table {
-	margin: 0 auto;
 	width: 100%;
 	border-collapse: collapse;
-	box-shadow: 0px 4px 10px orange;
-	border-radius: 15px;
-	/* Increased for a more curved edge */
-	overflow: hidden;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
@@ -179,51 +190,48 @@ th, td {
 
 thead th {
 	background-color: #ff4500;
-	/* Light orange background */
-	color: black;
-	/* Dark gray text */
+	color: white;
 }
 
 tbody tr {
 	background-color: rgba(255, 230, 200, 0.7);
-	/* Lighter orange with transparency */
-	margin-bottom: 10px;
 }
 
-th {
-	font-weight: bold;
+tbody tr:hover {
+	background-color: rgba(255, 165, 0, 0.5);
 }
 
-td {
-	background-color: rgba(255, 165, 0, 0.9);
-	color: #333;
-	font-size: medium;
+.seat-count-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .seatbutton {
-	border: #ff7f50 solid;
-	border-radius: 4px;
-	height: 30px;
-	width: 100px;
-	background-color: #ffffff;
-	/* Coral background */
-	color: black;
-	font-size: larger;
-	transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s
-		ease;
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	padding: 7px 14px;
+	background-color: #ff4d4d;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	font-size: 14px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .seatbutton:hover {
 	background-color: #ff4500;
-	color: white;
-	cursor: pointer;
+}
+
+h2 {
+	text-align: center;
+	color: orange;
+	padding: 15px 0;
 }
 
 .passenger-form {
 	width: 100%;
 	max-width: 600px;
-	margin: 0 auto;
+	margin: 20px auto;
 	background-color: white;
 	padding: 20px;
 	border-radius: 10px;
@@ -233,35 +241,17 @@ td {
 .form-label {
 	font-size: 16px;
 	color: #333;
-	display: inline-flex;
+	display: block;
 	margin-bottom: 8px;
-	margin: 0 auto;
 }
 
-.form-input {
-	width: 50%;
-	padding: 10px;
-	margin: 0 auto;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	font-size: 13px;
-}
-
-.form-select {
+.form-input, .form-select {
 	width: 100%;
 	padding: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	font-size: 14px;
-	cursor: pointer;
-	font-size: 13px;
-}
-
-.form-section-heading {
-	color: orange;
-	margin-bottom: 10px;
-	font-size: 18px;
 }
 
 .form-button {
@@ -273,87 +263,44 @@ td {
 	cursor: pointer;
 	font-size: 16px;
 	width: 100%;
-	font-size: 13px;
+	transition: background-color 0.3s ease;
 }
 
 .form-button:hover {
 	background-color: darkorange;
 }
 
-.passenger-form {
-	padding: 15px;
+.confirmation-container {
+	max-width: 600px;
+	margin: auto;
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.form-label {
-	font-size: 14px;
+/* Confirmation Heading */
+.confirmation-heading {
+	color: orange;
+	text-align: center;
 }
 
-.subdata {
-	font-size: 22px;
-	color: white;
-	border-radius: 15px;
-	background-color: #FF4500;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 20px;
+/* Details Section */
+.details {
+	margin-top: 20px;
 }
 
-.subdata label {
-	margin: 0 10px;
+.details label {
 	font-weight: bold;
-	font-size: 1.1em;
 }
 
-.subdata span {
-	margin: 0 10px;
-	font-size: 1.1em;
-	color: #007bff;
+.footer-bottom {
+	background-color: #1c1b2d;
+	color: #ccc;
+	padding: 20px 0;
+	text-align: center;
 }
 
-.firstform {
-	display: flex;
-}
-
-.seat-count-wrapper {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	gap: 10px;
-}
-
-.seat-count-wrapper button {
-	padding: 5px 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	background-color: #f0f0f0;
-	cursor: pointer;
-}
-
-.seat-count-wrapper span {
-	padding: 5px 10px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-
-.seatbutton {
-	padding: 7px 14px;
-	background-color: #ff4d4d;
-	border: none;
-	border-radius: 5px;
-	color: #ff4d4d;
-	font-size: 14px;
-	cursor: pointer;
-}
-
-.seatbutton:hover {
-	background-color: #ff4d4d;
-	color: white;
-}
-div.well {
-    font-family: sans-serif;
-    font-size: xx-large;
-    color: coral;
-    font-weight: 800;
+.footer-bottom p {
+	margin: 0;
 }

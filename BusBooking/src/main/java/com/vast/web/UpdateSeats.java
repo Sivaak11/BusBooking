@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import com.vast.dao.DbBusDao;
 import com.vast.dao.IBusDao;
 
-public class BookingSeats implements Action {
+public class UpdateSeats implements Action {
 static Logger logger = Logger.getLogger("vast");
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {

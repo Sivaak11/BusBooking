@@ -1,8 +1,11 @@
-
+<%@page import="com.vast.vo.UserDetails"%>
 <%@page import="java.util.List"%>
 <%@page import="java.io.IOException"%>
 <%@page import="javax.servlet.ServletException"%>
 <%@page import="javax.servlet.annotation.WebServlet"%>
+<%@page import="javax.servlet.http.HttpSession"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
+<%@page import="javax.servlet.http.HttpServletResponse"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,28 +15,35 @@
 <title>Passenger Details</title>
 <link rel="stylesheet" href="bus.css">
 </head>
-<style>
-/* Your existing CSS here */
-</style>
 <body>
+	<%
+	HttpSession httpSession = request.getSession(false);
+	if (httpSession == null || httpSession.getAttribute("login") == null) {
+		request.setAttribute("msg", "You're not authenticated");
+		response.sendRedirect("LogIn.jsp");
+		return; // Make sure to return after redirecting
+	}
+	%>
 
-	<c:if test="${sessionScope.login eq null }">
-		<jsp:forward page="LogIn.jsp">
-			<jsp:param value="Your Not Authenticated" name="msg" />
-		</jsp:forward>
-s
-	</c:if>
 	<header>
 		<div class="header-class">
 			<div class="logo">
 				<span style="color: red;">Get</span> <span class="trusted">Bus-y</span>
 			</div>
-			<div class="well">
-				<a href="#">WELCOME</a>
-			</div>
-			<div class="nav">
-				<a href="#login" class="login">Login/SignUp</a>
-			</div>
+			<div
+				style="font-family: sans-serif; font-size: xx-large; color: coral; font-weight: 800">
+				WELCOME</div>
+			<%
+			if (null == session.getAttribute("login")) {
+			%>
+			<a href="login" class="login">Login</a>
+			<%
+			} else {
+			%>
+			<h3>User ID : ${sessionScope.login.userName}</h3>
+			<%
+			}
+			%>
 		</div>
 	</header>
 
@@ -43,7 +53,12 @@ s
 
 		<%
 		String busId = request.getParameter("busId");
-		int seats = Integer.parseInt(request.getParameter("seats")); // Get the number of seats
+		UserDetails user = (UserDetails) session.getAttribute("login");
+		String userId = user.getUserId();
+		String departure = request.getParameter("departure");
+		String arrival = request.getParameter("arrival");
+		String busName = request.getParameter("busname");
+		int seats = Integer.parseInt(request.getParameter("seats"));
 
 		if (request.getAttribute("res") != null) {
 		%>
@@ -52,16 +67,13 @@ s
 		}
 		%>
 
-		<form class="passenger-form" action="ticket.jsp">
+		<form class="passenger-form" action="ticket" method="post">
 			<input type="hidden" name="busId" value="<%=busId%>"> <input
-				type="hidden" name="busName" value="Your Bus Name Here">
-			<!-- Replace with actual bus name -->
-			<input type="hidden" name="departure" value="">
-			<!-- Replace with actual departure -->
-			<input type="hidden" name="arrival" value=""> <input
-				type="hidden" name="seats" value="<%=seats%>">
-
-			<!-- Replace with actual arrival -->
+				type="hidden" name="busName" value="<%=busName%>"> <input
+				type="hidden" name="departure" value="<%=departure%>"> <input
+				type="hidden" name="arrival" value="<%=arrival%>"> <input
+				type="hidden" name="seats" value="<%=seats%>"> <input
+				type="hidden" name="userId" value="<%=userId%>">
 
 			<%
 			for (int i = 1; i <= seats; i++) {
@@ -86,6 +98,7 @@ s
 			<label for="address" class="form-label">Address:</label> <input
 				type="text" id="address" name="address" class="form-input" required><br>
 			<br>
+
 			<h3 class="form-section-heading">Payment</h3>
 			<label for="payment-method" class="form-label">Payment
 				Method:</label> <select id="payment-method" name="payment-method"
@@ -98,11 +111,11 @@ s
 
 			<button type="submit" class="form-button">Pay Now</button>
 		</form>
-
 	</article>
 
 	<footer class="footer-bottom">
 		<p>Copyright ©2022 All rights reserved</p>
+		<a href="index.jsp">Home</a>
 	</footer>
 </body>
 </html>

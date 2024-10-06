@@ -1,7 +1,7 @@
-<%@page import="com.vast.vo.Bus"%>
-<%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page import="com.vast.vo.UserDetails"%>
+<%@ page import="com.vast.vo.Bus"%>
+<%@ page import="java.util.List"%>
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -11,44 +11,55 @@
 <title>Available Buses</title>
 <link rel="stylesheet" type="text/css" href="bus.css">
 <script>
-	function updateSeatCount(busNumber, operation) {
-		var seatCountElement = document
-				.getElementById('seatCount_' + busNumber);
-		var currentCount = parseInt(seatCountElement.innerText);
+        function updateSeatCount(busNumber, operation) {
+            var seatCountElement = document.getElementById('seatCount_' + busNumber);
+            var currentCount = parseInt(seatCountElement.innerText);
 
-		if (operation === 'add') {
-			seatCountElement.innerText = currentCount + 1;
-		} else if (operation === 'subtract' && currentCount > 0) {
-			seatCountElement.innerText = currentCount - 1;
-		}
-	}
+            if (operation === 'add') {
+                seatCountElement.innerText = currentCount + 1;
+            } else if (operation === 'subtract' && currentCount > 0) {
+                seatCountElement.innerText = currentCount - 1;
+            }
+        }
 
-	function bookSeat(busNumber) {
-		var seatCountElement = document
-				.getElementById('seatCount_' + busNumber);
-		var bookedSeats = parseInt(seatCountElement.innerText);
+        function bookSeat(busNumber, busName, departure, arrival, userId) {
+            var seatCountElement = document.getElementById('seatCount_' + busNumber);
+            var bookedSeats = parseInt(seatCountElement.innerText);
 
-		if (bookedSeats > 0) {
-			location.href = 'bookSeat.jsp?busId=' + busNumber + '&seats='
-					+ bookedSeats;
-		} else {
-			alert("Please select at least one seat to book.");
-		}
-	}
-</script>
+            if (bookedSeats > 0) {
+                location.href = 'bookSeat.jsp?busId=' + busNumber + '&seats='
+                    + bookedSeats + '&departure='
+                    + encodeURIComponent(departure) + '&arrival='
+                    + encodeURIComponent(arrival) + '&busname='
+                    + encodeURIComponent(busName) + '&userid='
+                    + encodeURIComponent(userId);
+            } else {
+                alert("Please select at least one seat to book.");
+            }
+        }
+    </script>
 </head>
-<body>
 
+<c:if test="${empty sessionScope.login}">
+	<jsp:forward page="LogIn.jsp">
+		<jsp:param name="msg" value="Your Not Authenticated" />
+	</jsp:forward>
+</c:if>
+
+<body>
 	<header class="header-class">
 		<div class="logo">
 			<span style="color: red;"> Get </span> <span class="trusted">Bus-y</span>
 		</div>
-		<div class="well">
-			<a href="#">WELCOME</a>
-		</div>
-		<div class="nav">
-			<a href="#login" class="login">Login/SignUp</a>
-		</div>
+		<div
+			style="font-family: sans-serif; font-size: xx-large; color: coral; font-weight: 800">
+			WELCOME</div>
+
+		<c:choose>
+			<c:when test="${not empty sessionScope.login}">
+				 <h3>User ID : ${sessionScope.login.userName}</h3>
+			</c:when>
+		</c:choose>
 	</header>
 
 	<article class="hero">
@@ -58,65 +69,56 @@
 
 		<c:if test="${not empty buses}">
 			<div class="table">
-
 				<div class="subdata">
-
 					<h4 style="font-size: 20px; margin: 10px">Route :</h4>
-					<%=request.getParameter("txtdeparture")%>
-
-					<label style="font-size: 20px;">To</label>
-					<%=request.getParameter("txtarrival")%>
-
-					<label>Date: </label>
-					<%=request.getParameter("txtdate")%>
+					<span>${param.txtdeparture}</span> <label style="font-size: 20px;">To</label>
+					<span>${param.txtarrival}</span> <label>Date: </label> <span>${param.txtdate}</span>
 				</div>
 
-				<table border="1" cellpadding="10">
-					<thead>
-						<tr>
-							<th>Bus Number</th>
-							<th>Name</th>
-							<th>Time</th>
-							<th>Available Seats</th>
-							<th>Book Ticket</th>
-						</tr>
-					</thead>
-					<tbody>
-						<%
-						List<Bus> buses = (List<Bus>) request.getAttribute("buses");
-						if (buses != null) {
-							for (Bus bus : buses) {
-								out.println("<tr>");
-								out.println("<td>" + bus.getBus_Number() + "</td>");
-								out.println("<td>" + bus.getName() + "</td>");
-								out.println("<td>" + bus.getDeparture_time() + "</td>");
-								out.println("<td>" + bus.getAvailableSeats() + "</td>");
-
-							   
-                                out.println("<td class='seat-count-wrapper'>");
-                                out.println("<button type='button' onclick=\"updateSeatCount('" + bus.getBus_Number() + "', 'subtract')\">-</button>");
-                                out.println("<span id='seatCount_" + bus.getBus_Number() + "'>0</span>");
-                                out.println("<button type='button' onclick=\"updateSeatCount('" + bus.getBus_Number() + "', 'add')\">+</button>");
-                                out.println("<button class='seatbutton' type='button' onclick='bookSeat(\"" + bus.getBus_Number() + "\")'>Book Seats</button>");
-                                out.println("</td>");
-                                out.println("</tr>");
-							}
-						}
-						%>
-					</tbody>
-				</table>
+				<form action="yourBusSearchHandler.jsp" method="POST">
+					<table border="1" cellpadding="10">
+						<thead>
+							<tr>
+								<th>Bus Number</th>
+								<th>Name</th>
+								<th>Time</th>
+								<th>Available Seats</th>
+								<th>Book Ticket</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="bus" items="${requestScope.buses}">
+								<tr>
+									<td>${bus.bus_Number}</td>
+									<td>${bus.name}</td>
+									<td>${bus.departure_time}</td>
+									<td>${bus.availableSeats}</td>
+									<td class='seat-count-wrapper'>
+										<button type='button'
+											onclick="updateSeatCount('${bus.bus_Number}', 'subtract')">-</button>
+										<span id='seatCount_${bus.bus_Number}'>0</span>
+										<button type='button'
+											onclick="updateSeatCount('${bus.bus_Number}', 'add')">+</button>
+										<button class='seatbutton' type='button'
+											onclick='bookSeat("${bus.bus_Number}", "${bus.name}", "${param.txtdeparture}", "${param.txtarrival}", "${sessionScope.login.userId != null ? sessionScope.login.userId : ""}")'>Book
+											Seats</button>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</form>
 			</div>
 		</c:if>
 
 		<c:if test="${empty buses}">
 			<p>No buses available.</p>
 		</c:if>
-
 	</article>
 
 	<footer class="footer-bottom">
 		<p>Copyright ©2022 All rights reserved</p>
+		<a href="index.jsp">Home</a>
 	</footer>
-
 </body>
 </html>

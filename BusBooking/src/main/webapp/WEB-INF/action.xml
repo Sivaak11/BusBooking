@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <actions>
 	<action uri="/findbus" class="com.vast.web.FindBuses" />
-	<action uri="/update" class="com.vast.web.BookingSeats" />
+	<action uri="/update" class="com.vast.web.UpdateSeats" />
 	<action uri="/login" class="com.vast.web.DoLoginAction" />
+	<action uri="/ticket"
+		class="com.vast.web.AddTicketDetailsAction" />
+	<action uri="/showticket" class="com.vast.web.ViewTicketAction" />
+
 </actions>
