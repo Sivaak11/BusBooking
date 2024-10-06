@@ -7,6 +7,31 @@
     <meta charset="ISO-8859-1">
     <title>Login - Get Bus-y</title>
     <link href="bus.css" rel="stylesheet" />
+    <script>
+        function validateForm() {
+            const userId = document.forms["loginfrm"]["txtuserid"].value;
+            const password = document.forms["loginfrm"]["txtpass"].value;
+            const userIdRegex = /^[a-zA-Z0-9]+$/; // Only alphanumeric characters
+
+            // Check for empty fields
+            if (userId.trim() === "") {
+                alert("User ID cannot be empty.");
+                return false;
+            }
+
+            if (!userIdRegex.test(userId)) {
+                alert("User ID can only contain alphanumeric characters.");
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+
+            return true; // Form is valid
+        }
+    </script>
 </head>
 <body>
     <header class="header-class">
@@ -22,13 +47,13 @@
     </header>
 
     <article class="hero">
-        <form action="login" class="loginfrm" method="post">
+        <form name="loginfrm" action="login" class="loginfrm" method="post" onsubmit="return validateForm()">
             <div class="article_Title">Login</div>
             <c:if test="${not empty requestScope.msg}">
                 <div class="err">${requestScope.msg}</div>
             </c:if>
             <section>
-                <div>User id</div>
+                <div>User ID</div>
                 <div>
                     <input type="text" name="txtuserid" placeholder="Enter your userid" required />
                 </div>

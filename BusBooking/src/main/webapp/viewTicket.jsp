@@ -27,7 +27,7 @@
 			<%
 			} else {
 			%>
-			<h3>Hi ${sessionScope.login.userName }</h3>
+			<h3>User ID : ${sessionScope.login.userName}</h3>
 			<%
 			}
 			%>

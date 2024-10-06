@@ -9,16 +9,17 @@ import com.vast.dao.DbBusDao;
 import com.vast.dao.IBusDao;
 
 public class UpdateSeats implements Action {
-static Logger logger = Logger.getLogger("vast");
+	static Logger logger = Logger.getLogger("vast");
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		IBusDao dao = DbBusDao.getDaoInstance();
 		String busId = request.getParameter("busId");
 		int seatsToBook = Integer.parseInt(request.getParameter("seats"));
-	logger.info(seatsToBook);
+		logger.info(seatsToBook);
 		boolean res;
 		res = dao.updateAvailableSeats(busId, seatsToBook);
-		logger.info("value of res :"+res);
+		logger.info("value of res :" + res);
 		try {
 			if (res) {
 				request.setAttribute("res", "seats booked for " + busId + " is succesfully");
