@@ -117,7 +117,7 @@
 
 				<br> <br> <label for="age_<%=i%>" class="form-label">Age:</label>
 				<input type="number" id="age_<%=i%>" name="age_<%=i%>" min="2"
-					class="form-input" required> <br> <br>
+					max="98" class="form-input" required> <br> <br>
 			</div>
 			<%
 			}
