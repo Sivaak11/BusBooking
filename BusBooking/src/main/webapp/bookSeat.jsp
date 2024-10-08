@@ -71,8 +71,8 @@
 			} else {
 			%>
 			<div class="logOut">
-				<h3>User ID : ${sessionScope.login.userName}</h3>
-				<a href="logout">Logout</a>
+				<p>User ID : ${sessionScope.login.userName}</p>
+				<a href="logout" class="out">Logout</a>
 			</div>
 			<%
 			}

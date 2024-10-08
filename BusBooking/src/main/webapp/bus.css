@@ -38,9 +38,16 @@ h3 {
 	margin-right: 20px;
 }
 
+.out {
+	color: -webkit-link;
+	cursor: pointer;
+	text-decoration: none;
+ margin-left: 10px;
+}
+
 .logOut {
 	display: flex;
-	
+	padding: 10px;
 }
 
 .nav {

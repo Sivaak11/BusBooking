@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 
@@ -36,17 +37,18 @@
 				<span style="color: red;"> Get </span> <span class="trusted">Bus-y</span>
 			</div>
 			<div
-				style="font-family: sans-serif; font-size: xx-large; color: coral; font-weight: 800">
+				style="font-family: sans-serif; font-size: xx-large; color: coral; font-weight: 800;text-align: center;">
 				WELCOME</div>
 			<div class="nav">
 				<c:choose>
-					<c:when test="${sessionScope.login == null}">
+					<c:when test="${empty sessionScope.login}">
 						<a href="login" class="login">Login</a>
 					</c:when>
 					<c:otherwise>
 						<div class="logOut">
-							<h3>User ID : ${sessionScope.login.userName}</h3>
-							<a href="showticket">Show My Ticket</a> <a href="logout">Logout</a>
+							<p>User ID : ${sessionScope.login.userName}</p>
+							<a href="showticket">Show My Ticket</a> <a href="logout"
+								class="out">Logout</a>
 						</div>
 					</c:otherwise>
 				</c:choose>
@@ -75,6 +77,7 @@
 						<option value="Coimbatore">
 						<option value="Kovilpatti">
 					</datalist>
+
 					<%
 					Calendar cal = Calendar.getInstance();
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -84,8 +87,8 @@
 					%>
 					<input type="date" id="travel-date" name="txtdate" required
 						min="<%=minDate%>" max="<%=maxDate%>" />
-					<button type="submit" class="search-btn">Search bus</button>
 
+					<button type="submit" class="search-btn">Search bus</button>
 				</form>
 			</section>
 		</div>
