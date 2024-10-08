@@ -58,8 +58,11 @@
 		<c:choose>
 			<c:when test="${not empty sessionScope.login}">
 				<div class="logOut">
+
 					<p>User ID : ${sessionScope.login.userName}</p>
-					<a href="logout" class="out">Logout</a>
+					<a class="out" href="index.jsp">Home</a> <a href="logout"
+						class="out">Logout</a>
+
 				</div>
 			</c:when>
 		</c:choose>
@@ -121,7 +124,7 @@
 
 	<footer class="footer-bottom">
 		<p>Copyright ©2022 All rights reserved</p>
-		<a href="index.jsp">Home</a>
+		 
 	</footer>
 </body>
 </html>

@@ -38,21 +38,22 @@ h3 {
 	margin-right: 20px;
 }
 
-.out {
-	color: -webkit-link;
-	cursor: pointer;
-	text-decoration: none;
- margin-left: 10px;
-}
-
 .logOut {
 	display: flex;
-	padding: 10px;
+	margin-bottom: 10px; /* Adjust the value as needed */
 }
 
 .nav {
 	display: flex;
 	align-items: center;
+}
+
+.logOut p {
+	margin-right: 10px;
+}
+
+.logOut a {
+	margin-right: 10px;
 }
 
 .nav a {
@@ -66,6 +67,10 @@ h3 {
 	color: hsl(226, 100%, 50%);
 }
 
+.out {
+	text-decoration: none;
+}
+
 .hero {
 	margin: 20px;
 	padding: 40px;
@@ -77,8 +82,6 @@ h3 {
 	justify-content: center;
 	align-items: center;
 	height: calc(100vh - 120px);
-	/* Adjusting for header and footer height */
-	background-color: #ffffff;
 }
 
 .overlay {
@@ -111,7 +114,7 @@ h1 {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	font-size: 16px;
-	width: 200px; /* Fixed width for consistency */
+	width: 200px;
 }
 
 .firstform button {
@@ -150,7 +153,6 @@ h1 {
 	text-align: center;
 }
 
-/* Input Fields */
 input[type="text"], input[type="password"] {
 	width: 100%;
 	padding: 10px;
@@ -159,7 +161,6 @@ input[type="text"], input[type="password"] {
 	border-radius: 5px;
 }
 
-/* Submit Button */
 input[type="submit"] {
 	width: 100%;
 	padding: 10px;
@@ -291,13 +292,11 @@ h2 {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Confirmation Heading */
 .confirmation-heading {
 	color: orange;
 	text-align: center;
 }
 
-/* Details Section */
 .details {
 	margin-top: 20px;
 }

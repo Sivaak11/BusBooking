@@ -1,6 +1,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.io.IOException"%>
 <%@ page import="javax.servlet.ServletException"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,102 +10,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Booking Confirmation</title>
 <link rel="stylesheet" href="bus.css">
-
 </head>
 <body>
-	<%
-	HttpSession httpSession = request.getSession(false);
-	if (httpSession == null || httpSession.getAttribute("login") == null) {
-		request.setAttribute("msg", "you're not authenticated");
-		response.sendRedirect("LogIn.jsp");
-	}
-	%>
+	<c:if test="${empty sessionScope.login}">
+		<c:set var="msg" value="You're not authenticated" />
+		<c:redirect url="LogIn.jsp" />
+	</c:if>
 
 	<header class="header-class">
 		<div class="logo">
-			<span style="color: red;"> Get </span> <span class="trusted">Bus-y</span>
+			<span style="color: red;">Get</span> <span class="trusted">Bus-y</span>
 		</div>
 		<div
 			style="font-family: sans-serif; font-size: xx-large; color: coral; font-weight: 800">
 			WELCOME</div>
-		<%
-		if (null == session.getAttribute("login")) {
-		%>
-		<div class="nav">
-			<a href="#login" class="login">Login</a>
-		</div>
-		<%
-		} else {
-		%>
-		<div class="logOut">
-			<p>User ID : ${sessionScope.login.userName}</p>
-			<a href="logout" class="out">Logout</a>
-		</div>
-		</div>
-		<%
-		}
-		%>
 
+		<c:choose>
+			<c:when test="${empty sessionScope.login}">
+				<div class="nav">
+					<a href="#login" class="login">Login</a>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="logOut">
+
+					<p>User ID : ${sessionScope.login.userName}</p>
+					<a class="out" href="index.jsp">Home</a> <a href="logout"
+						class="out">Logout</a>
+
+				</div>
+			</c:otherwise>
+		</c:choose>
 	</header>
+
 	<article class="hero">
 		<form action="update">
 			<div class="confirmation-container">
 				<h1 class="confirmation-heading">Thank You for Booking!</h1>
 
-				<%
-				String busId = request.getParameter("busId");
-				String busName = request.getParameter("busName");
-				String departure = request.getParameter("departure");
-				String arrival = request.getParameter("arrival");
-				int seats = Integer.parseInt(request.getParameter("seats"));
-				String userId = request.getParameter("userId");
-				String[] passengerNames = new String[seats];
-				for (int i = 1; i <= seats; i++) {
-					passengerNames[i - 1] = request.getParameter("name_" + i);
-				}
-				%>
+				<c:set var="busId" value="${param.busId}" />
+				<c:set var="busName" value="${param.busName}" />
+				<c:set var="departure" value="${param.departure}" />
+				<c:set var="arrival" value="${param.arrival}" />
+				<c:set var="seats" value="${param.seats}" />
+				<c:set var="userId" value="${param.userId}" />
+				<c:set var="passengerNames" value="${param.passengerNames}" />
 
 				<div class="details">
 					<p>
-						<label>User Id:</label>
-						<%=userId%></p>
+						<label>User Id:</label> ${userId}
+					</p>
 					<p>
+						<label>Bus Number:</label> ${busId}
+					</p>
 					<p>
-						<label>Bus Number:</label>
-						<%=busId%></p>
+						<label>Bus Name:</label> ${busName}
+					</p>
 					<p>
-						<label>Bus Name:</label>
-						<%=busName%></p>
+						<label>Departure:</label> ${departure}
+					</p>
 					<p>
-						<label>Departure:</label>
-						<%=departure%></p>
+						<label>Arrival:</label> ${arrival}
+					</p>
 					<p>
-						<label>Arrival:</label>
-						<%=arrival%></p>
-					<p>
-						<label>Number of Seats:</label>
-						<%=seats%></p>
+						<label>Number of Seats:</label> ${seats}
+					</p>
 					<p>
 						<label>Passenger Names:</label>
 					</p>
 					<ul>
-						<%
-						for (String name : passengerNames) {
-							out.println("<li>" + name + "</li>");
-						}
-						%>
+						<c:forEach var="name" items="${passengerNames}">
+							<li>${name}</li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
 
-			<input type="hidden" name="seats" value="<%=seats%>"> <input
-				type="hidden" name="busId" value="<%=busId%>">
+			<input type="hidden" name="seats" value="${seats}" /> <input
+				type="hidden" name="busId" value="${busId}" />
 			<button type="submit" class="form-button">Done</button>
 		</form>
 	</article>
+
 	<footer class="footer-bottom">
 		<p>Copyright ©2022 All rights reserved</p>
-		<a href="index.jsp">Home</a>
+
 	</footer>
 </body>
 </html>

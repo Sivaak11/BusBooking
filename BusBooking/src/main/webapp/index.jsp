@@ -8,7 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Bus Booking</title>
-<link rel="stylesheet" href="bus.css">
+<link rel="stylesheet" href="index.css">
 <script>
 	function validateForm() {
 		const departure = document.forms["firstform"]["txtdeparture"].value;
@@ -26,9 +26,16 @@
 			return false;
 		}
 
+		if (departure.toLowerCase() === arrival.toLowerCase()) {
+			alert("Departure and arrival locations cannot be the same.");
+			return false;
+		}
+
 		return true;
 	}
 </script>
+
+
 </head>
 <body>
 	<header>
@@ -37,7 +44,7 @@
 				<span style="color: red;"> Get </span> <span class="trusted">Bus-y</span>
 			</div>
 			<div
-				style="font-family: sans-serif; font-size: xx-large; color: coral; font-weight: 800;text-align: center;">
+				style="font-family: sans-serif; font-size: xx-large; color: coral; font-weight: 800; text-align: center;">
 				WELCOME</div>
 			<div class="nav">
 				<c:choose>

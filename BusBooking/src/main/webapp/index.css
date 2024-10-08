@@ -1,0 +1,168 @@
+@charset "ISO-8859-1";
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #F4F4F4;
+	font-family: Arial, sans-serif;
+}
+
+.header-class {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	height: 90px;
+	padding: 0 20px;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	font-size: medium;
+}
+
+.trusted {
+	font-size: 24px;
+	color: #777;
+}
+
+h3 {
+	font-size: 24px;
+	color: coral;
+	margin-right: 20px;
+}
+
+.out {
+	color: -webkit-link;
+	cursor: pointer;
+	text-decoration: none;
+	margin-left: 10px;
+}
+
+.logOut {
+	display: flex;
+	padding: 10px;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+}
+
+.nav a {
+	color: #333;
+	text-decoration: none;
+	margin-left: 20px;
+	font-size: 16px;
+}
+
+.nav a:hover {
+	color: hsl(226, 100%, 50%);
+}
+
+.hero::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url('images/index.png');
+	/* Replace with your image path */
+	background-size: cover; /* Scale image to cover */
+	background-position: center; /* Center image */
+	opacity: 1; /* Adjust opacity here (0 to 1) */
+	z-index: 1; /* Position the overlay behind content */
+}
+
+.hero {
+	background-image: url("images/index.png");
+	position: relative;
+	/* Position for absolute overlay */
+	height: 100vh; /* Full viewport height */
+	width: 100%; /* Full width */
+	overflow: hidden; /* Prevent overflow */
+	margin: 20px;
+	padding-left: 0px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	display: flex;
+	height: calc(100vh - 120px);
+	/* Adjusting for header and footer height */
+	background-color: #ffffff;
+	position: relative;
+}
+
+.overlay {
+	margin-left: 0px;
+	position: relative;
+	z-index: 2;
+	color: white;
+	text-align: center;
+	width: 450px;
+	height: 250px;
+	background: rgb(255 165 0/ 0%);
+	padding: 20px;
+	border-radius: 10px;
+	margin-top: 110px;
+}
+
+h1 {
+	font-size: 36px;
+	color: white;
+	margin-bottom: 20px;
+}
+
+.booking-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.firstform {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.firstform input[type="text"], .firstform input[type="date"] {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+	width: 200px; /* Fixed width for consistency */
+}
+
+.firstform button {
+	padding: 10px 20px;
+	background-color: #ff4500;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s;
+}
+
+.firstform button:hover {
+	background-color: darkorange;
+}
+
+.footer-bottom {
+	background-color: #1c1b2d;
+	color: #ccc;
+	padding: 20px 0;
+	text-align: center;
+}
+
+.footer-bottom p {
+	margin: 0;
+}
