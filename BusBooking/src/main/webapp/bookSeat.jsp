@@ -22,8 +22,13 @@
 		for (let i = 1; i <= seatCount; i++) {
 			const name = document.getElementById(`name_${i}`).value;
 			const address = document.getElementById('address').value;
-
-			// Validate Passenger Name: Only alphabets and one space allowed
+			const mobileInput = document.getElementById('mobile').value;
+			const errorMessage = document.getElementById('error-message');
+			if (mobileInput.length !== 10 || isNaN(mobileInput)) {
+				errorMessage.textContent = "Please enter exactly 10 digits.";
+				return false;
+			}
+			// Validate Passenger Name: Only alphabets and one s	pace allowed
 			if (!/^[a-zA-Z]+( [a-zA-Z]+)?$/.test(name)) {
 				alert(`Passenger ${i}: Name must contain only letters and a single space.`);
 				isValid = false;
@@ -46,7 +51,7 @@
 	if (httpSession == null || httpSession.getAttribute("login") == null) {
 		request.setAttribute("msg", "You're not authenticated");
 		response.sendRedirect("LogIn.jsp");
-		return; // Make sure to return after redirecting
+		return;
 	}
 	%>
 
@@ -65,7 +70,10 @@
 			<%
 			} else {
 			%>
-			<h3>User ID : ${sessionScope.login.userName}</h3>
+			<div class="logOut">
+				<h3>User ID : ${sessionScope.login.userName}</h3>
+				<a href="logout">Logout</a>
+			</div>
 			<%
 			}
 			%>
@@ -127,7 +135,7 @@
 				class="form-input" pattern="[0-9]{10}" required> <br> <br>
 			<label for="address" class="form-label">Address:</label> <input
 				type="text" id="address" name="address" class="form-input" required
-				pattern="^[A-Za-z0-9\- ]+$"
+				pattern="^[A-Za-z0-9\- ,]+$"
 				title="Address must contain only alphanumeric characters and hyphens.">
 
 			<br> <br>

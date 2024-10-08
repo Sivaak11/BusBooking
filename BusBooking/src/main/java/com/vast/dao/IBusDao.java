@@ -3,6 +3,9 @@ package com.vast.dao;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.vast.Exception.AlreadyExistException;
 import com.vast.Exception.NotFoundException;
 import com.vast.vo.Bus;
@@ -16,10 +19,10 @@ public interface IBusDao {
 
 	UserDetails getLoginDetails(String uname, String pwd);
 
-	boolean signUp(UserDetails login) throws AlreadyExistException;
-
 	boolean addPassenger(TicketDetails passenger) throws AlreadyExistException;
 
 	Set<TicketDetails> showticket(String userId) throws NotFoundException;
+
+	String doLogout(HttpServletRequest request, HttpServletResponse response);
 
 }

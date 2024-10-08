@@ -13,7 +13,7 @@
 		const departure = document.forms["firstform"]["txtdeparture"].value;
 		const arrival = document.forms["firstform"]["txtarrival"].value;
 
-		const regex = /^[A-Za-z]+( [A-Za-z]+)?$/; // Regex to allow letters and at most one space
+		const regex = /^[A-Za-z]+( [A-Za-z]+)?$/;
 
 		if (!regex.test(departure)) {
 			alert("Please enter a valid departure location (letters only, at most one space).");
@@ -25,7 +25,7 @@
 			return false;
 		}
 
-		return true; // Form is valid
+		return true;
 	}
 </script>
 </head>
@@ -44,8 +44,10 @@
 						<a href="login" class="login">Login</a>
 					</c:when>
 					<c:otherwise>
-						<h3>User ID : ${sessionScope.login.userName}</h3>
-						<a href="showticket">Show My Ticket</a>
+						<div class="logOut">
+							<h3>User ID : ${sessionScope.login.userName}</h3>
+							<a href="showticket">Show My Ticket</a> <a href="logout">Logout</a>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -58,9 +60,21 @@
 			<section class="booking-form">
 				<form class="firstform" name="firstform" action="findbus"
 					method="post" onsubmit="return validateForm()">
-					<input type="text" name="txtdeparture" placeholder="From" required />
-					<input type="text" name="txtarrival" placeholder="To" required />
+					<input type="text" name="txtdeparture" placeholder="From" required
+						list="departure-options" /> <input type="text" name="txtarrival"
+						placeholder="To" required list="arrival-options" />
 
+					<datalist id="departure-options">
+						<option value="Chennai">
+						<option value="Coimbatore">
+						<option value="Kovilpatti">
+					</datalist>
+
+					<datalist id="arrival-options">
+						<option value="Chennai">
+						<option value="Coimbatore">
+						<option value="Kovilpatti">
+					</datalist>
 					<%
 					Calendar cal = Calendar.getInstance();
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -71,6 +85,7 @@
 					<input type="date" id="travel-date" name="txtdate" required
 						min="<%=minDate%>" max="<%=maxDate%>" />
 					<button type="submit" class="search-btn">Search bus</button>
+
 				</form>
 			</section>
 		</div>

@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 
 import com.vast.Exception.AlreadyExistException;
@@ -141,32 +145,6 @@ public class DbBusDao implements IBusDao {
 		return login;
 	}
 
-	@Override
-	public boolean signUp(UserDetails login) throws AlreadyExistException {
-		Connection con = null;
-		{
-			try {
-				con = DriverManager.getConnection(rb.getString("url"), rb.getString("uname"), rb.getString("pwd"));
-				logger.debug("mysql server connected");
-				String sql = "INSERT INTO login values (?,?,?)";
-				PreparedStatement ps = con.prepareStatement(sql);
-				ps.setString(1, login.getUserId());
-				ps.setString(2, login.getUserName());
-				ps.setString(3, login.getPwd());
-				int res = ps.executeUpdate();
-				if (res > 0)
-					return true;
-			} catch (SQLException e) {
-				logger.error(e.getMessage());
-				if (e.getMessage().contains("Duplicate"))
-					throw new AlreadyExistException("user id alreadey existed try new id");
-			} finally {
-				closeConnection(con);
-			}
-		}
-		return false;
-	}
-
 	private void closeConnection(Connection conn) {
 		try {
 			conn.close();
@@ -273,6 +251,18 @@ public class DbBusDao implements IBusDao {
 			}
 		}
 		return set;
+	}
+
+	@Override
+	public String doLogout(HttpServletRequest request, HttpServletResponse response) {
+		String viewName = "login.jsp";
+		HttpSession session = request.getSession(false);
+		if (null != session) {
+			session.invalidate();
+		}
+		request.setAttribute("msg", "you have logged out.");
+		return viewName;
+
 	}
 
 }

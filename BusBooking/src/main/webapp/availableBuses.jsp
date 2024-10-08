@@ -57,7 +57,10 @@
 
 		<c:choose>
 			<c:when test="${not empty sessionScope.login}">
-				 <h3>User ID : ${sessionScope.login.userName}</h3>
+				<div class="logOut">
+					<h3>User ID : ${sessionScope.login.userName}</h3>
+					<a href="logout">Logout</a>
+				</div>
 			</c:when>
 		</c:choose>
 	</header>

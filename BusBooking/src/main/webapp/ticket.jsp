@@ -36,8 +36,12 @@
 		<%
 		} else {
 		%>
+		<div class="logOut">
 		<h3>User ID : ${sessionScope.login.userName}</h3>
+		<a href="logout">Logout</a>
+		</div>
 		<%
+		
 		}
 		%>
 

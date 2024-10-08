@@ -6,5 +6,6 @@
 	<action uri="/ticket"
 		class="com.vast.web.AddTicketDetailsAction" />
 	<action uri="/showticket" class="com.vast.web.ViewTicketAction" />
+	<action uri="/logout" class="com.vast.web.DoLogoutAction" />
 
 </actions>
