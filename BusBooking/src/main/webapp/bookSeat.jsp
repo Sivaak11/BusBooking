@@ -110,8 +110,13 @@
 				type="hidden" name="userId" value="<%=userId%>">
 
 			<%
+			int pricePerSeat = 800; // Define the price per seat
+			int totalPrice = pricePerSeat * seats; // Calculate total price based on the number of seats
+			%>
+			<%
 			for (int i = 1; i <= seats; i++) {
 			%>
+			<h4 id="total-price" style="color: white;">ENTER DETAILS</h4>
 			<div class="passenger-details">
 				<h3 style="color: orange;">
 					Passenger
@@ -130,6 +135,15 @@
 			<%
 			}
 			%>
+			<script>
+				// Calculate and display the total price in the client-side
+				const pricePerSeat = 800; // Define the price per seat
+				const seatCount =
+			<%=seats%>
+				; // Get the number of seats from server-side
+				const totalPrice = pricePerSeat * seatCount; // Calculate total price
+				document.getElementById('total-price').textContent = `TOTAL PRICE = ${totalPrice} rupees`; // Update the displayed total price
+			</script>
 			<br> <label for="mobile" class="form-label">Mobile
 				Number:</label> <input type="tel" id="mobile" name="mobile"
 				class="form-input" pattern="[0-9]{10}" required> <br> <br>
@@ -139,7 +153,11 @@
 				title="Address must contain only alphanumeric characters and hyphens.">
 
 			<br> <br>
-
+			<h4 id="total-price" style="color: black;">
+				TOTAL PRICE =
+				<%=totalPrice%>
+				rupees
+			</h4>
 			<h3 class="form-section-heading">Payment</h3>
 			<label for="payment-method" class="form-label">Payment
 				Method:</label> <select id="payment-method" name="payment-method"
