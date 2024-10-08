@@ -26,5 +26,5 @@
 		<url-pattern>/showticket</url-pattern>
 		<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
-
+	
 </web-app>

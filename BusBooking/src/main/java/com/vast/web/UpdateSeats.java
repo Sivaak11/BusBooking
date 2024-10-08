@@ -15,6 +15,7 @@ public class UpdateSeats implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		IBusDao dao = DbBusDao.getDaoInstance();
 		String busId = request.getParameter("busId");
+		logger.debug(busId);
 		int seatsToBook = Integer.parseInt(request.getParameter("seats"));
 		logger.info(seatsToBook);
 		boolean res;

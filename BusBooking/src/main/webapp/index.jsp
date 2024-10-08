@@ -102,7 +102,7 @@
 	</article>
 
 	<footer class="footer-bottom">
-		<p>Copyright ©2022 All rights reserved</p>
+		<p>Copyright ï¿½2022 All rights reserved</p>
 	</footer>
 </body>
 </html>
